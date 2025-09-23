@@ -14,32 +14,59 @@ public partial class HirerRegisterPage : ContentPage
 
 
 	}
-    private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    private void AtualizarCampos()
     {
-        if (e.Value) // Só quando o botão ficou marcado
+        // Mostrar o campo empresa apenas se for Contratante E tiver selecionado "Sim"
+        if (ContratanteRadio.IsChecked)
         {
-            if (sender == MusicoRadio)
+            ContratanteFields.IsVisible = true;
+            if (sim.IsChecked)
             {
-                MusicoFields.IsVisible = true;
-                ContratanteFields.IsVisible = false;
+                EmpresaFields.IsVisible = true;
             }
-            else if (sender == ContratanteRadio)
+            else
             {
-                MusicoFields.IsVisible = false;
-                ContratanteFields.IsVisible = true;
+                EmpresaFields.IsVisible = false;
             }
-        }
-    }
-    private void RadioButton_empresaChanged(object sender, CheckedChangedEventArgs e)
-    {
-        if (sender == sim)
-        {
-            EmpresaFields.IsVisible = true;
+            
         }
         else
         {
             EmpresaFields.IsVisible = false;
+            ContratanteFields.IsVisible = false;
         }
+
+        // Mostrar o campo banda apenas se for Músico e tiver escolhido "Banda"
+        if (MusicoRadio.IsChecked)
+        {
+            MusicoFields.IsVisible = true;
+
+            
+            if (Choice.SelectedItem?.ToString() == "Banda")
+            {
+                CampoBanda.IsVisible = true;
+                Nome.IsVisible = false;
+            }
+        }
+        else
+        {
+            MusicoFields.IsVisible = false;
+            CampoBanda.IsVisible = false;
+        }
+    }
+
+    private void TipoPicker(object sender, EventArgs e)
+    {
+        AtualizarCampos();
+    }
+    private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+       AtualizarCampos();
+        
+    }
+    private void RadioButton_empresaChanged(object sender, CheckedChangedEventArgs e)
+    {
+        AtualizarCampos();
 
     }
 

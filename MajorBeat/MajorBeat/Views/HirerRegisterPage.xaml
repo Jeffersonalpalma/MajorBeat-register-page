@@ -29,11 +29,13 @@
                 <VerticalStackLayout  x:Name="MusicoFields" IsVisible="True">
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,25,0" WidthRequest="80" HorizontalOptions="End">
                     <Picker
+                                x:Name="Choice"
                                 Grid.Row="0"
                                 WidthRequest="60"
                                 HorizontalOptions="End"
                                 Margin="0,5,0,0"
-                                ZIndex="1">
+                                ZIndex="1"
+                                SelectedIndexChanged="TipoPicker">
 
                         <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
@@ -61,22 +63,35 @@
 
             <!--NOME COMPLETO-->
 
-            <Grid Margin="0,25,0,0">
+            <Grid Margin="0,25,0,0"
+                   x:Name="Nome">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Text="Nome Completo" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                <Label Text="Nome Completo" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                 <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
                     <Entry Grid.Row="1" Placeholder="Ex: Anderson Francisco Costa" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
                 </Border>
             </Grid>
 
-            
-            
-           
-           <!--E-MAIL-->
+            <Grid Margin="0,25,0,0" x:Name="CampoBanda">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Text="Nome da Banda" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
+                    <Entry Grid.Row="1" Placeholder="Ex:Slipknot" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
+                </Border>
+            </Grid>
+
+
+
+
+            <!--E-MAIL-->
 
             <Grid Margin="0,20,0,0">
                 <Label Text="E-mail" HorizontalOptions="Start" Margin="38,0,0,0" FontSize="16"  FontAttributes="Bold" FontFamily="InterBold" TextColor="#e7e7e7"></Label>
