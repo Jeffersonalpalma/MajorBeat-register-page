@@ -14,14 +14,17 @@
             </Grid>
             
             <Label Text="Criar sua conta" HorizontalTextAlignment="Center" FontSize="25" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold"></Label>
+
+            <!-- botão solo banda-->
+            <VerticalStackLayout  x:Name="MusicoFields" IsVisible="True">
+            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="80" HorizontalOptions="End">
             <Picker
-        Grid.Row="0"
-        WidthRequest="60"
-        HorizontalOptions="Start"
-        Margin="0,5,0,0"
-        ZIndex="1"
-        
-        >
+                Grid.Row="0"
+                WidthRequest="60"
+                HorizontalOptions="End"
+                Margin="0,5,10,0"
+                ZIndex="1">
+                
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Solo</x:String>
@@ -29,9 +32,10 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
-            
+            </Border>
+            </VerticalStackLayout>
 
-            
+            <!-- botão musico contratante-->
             <Grid Margin="0,20,0,0">
                 <RadioButton x:Name="MusicoRadio" Content="Músico" GroupName="UserType" TextColor="#e7e7e7" IsChecked="True"
                  HorizontalOptions="Center" FontSize="15" Margin="0,0,190,0" BorderColor="#e7e7e7" CheckedChanged="RadioButton_CheckedChanged"/>
@@ -39,27 +43,16 @@
                  HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7" CheckedChanged="RadioButton_CheckedChanged"/>
             </Grid>
 
-            <!-- Campos exclusivos para Músico -->
+            <!-- Campos exclusivos para Músico 
             <VerticalStackLayout x:Name="MusicoFields" IsVisible="True" Margin="0,10,0,0" Spacing="15">
-                <!-- Exemplo de campo exclusivo para músico -->
+               Exemplo de campo exclusivo para músico 
                 <Grid Margin="0,20,0,0">
                     <Label Text="Instrumento" TextColor="#e7e7e7" FontAttributes="Bold" FontSize="16" FontFamily="InterBold" Margin="40,0,0,0" />
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
                         <Entry Placeholder="Informe seu instrumento" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" />
                     </Border>
                 </Grid>
-            </VerticalStackLayout>
-
-            <!-- Campos exclusivos para Contratante -->
-            <VerticalStackLayout x:Name="ContratanteFields" IsVisible="False" Margin="0,10,0,0" Spacing="15">
-                <!-- Exemplo de campo exclusivo para contratante -->
-                <Grid Margin="0,20,0,0">
-                    <Label Text="Empresa / Organização" TextColor="#e7e7e7" FontAttributes="Bold" FontSize="16" FontFamily="InterBold" Margin="40,0,0,0" />
-                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
-                        <Entry Placeholder="Nome da empresa" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" />
-                    </Border>
-                </Grid>
-            </VerticalStackLayout>
+            </VerticalStackLayout> -->
 
 
 
@@ -126,16 +119,19 @@
 
                 </Grid>
             </Border>
-            
-            <Label Margin="65,0,0,0" FontSize="15" TextColor="white">Você está criando este perfil em nome de uma empresa (ex.: restaurante, bar, casa de shows)?</Label>
-            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
-            <Grid Margin="0,20,0,0">
-                <RadioButton x:Name="avc" Content="Sim" GroupName="UserType" TextColor="#e7e7e7" IsChecked="True"
-                    HorizontalOptions="Center" FontSize="15" Margin="0,0,190,0" BorderColor="#e7e7e7" />
-                <RadioButton x:Name="asd" Content="Não" GroupName="UserType" TextColor="#e7e7e7" IsChecked="False"
-                    HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7" />
-            </Grid>
-            </Border>
+
+            <!--nome empresa-->
+            <VerticalStackLayout x:Name="ContratanteFields" IsVisible="False" Margin="0,10,0,0">
+                <Label Margin="40,20,0,0" FontSize="15" TextColor="white">Você está criando este perfil em nome de uma empresa (ex.: restaurante, bar, casa de shows)?</Label>
+                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370"  HeightRequest="55">
+                    <Grid Margin="0,0,0,0">
+                        <RadioButton x:Name="sim" Content="Sim" GroupName="Type" TextColor="#4F1271" IsChecked="True"
+                        HorizontalOptions="Center" FontSize="15" Margin="0,0,190,0" BorderColor="#e7e7e7" />
+                        <RadioButton x:Name="nao" Content="Não" GroupName="Type" TextColor="#4F1271" IsChecked="False"
+                        HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
 
 
 
