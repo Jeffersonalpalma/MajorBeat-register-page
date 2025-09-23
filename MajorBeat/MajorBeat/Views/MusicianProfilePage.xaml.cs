@@ -6,4 +6,9 @@ public partial class MusicianProfilePage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void voltar_Clicked_1(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new HirerRegisterPage());
+    }
 }

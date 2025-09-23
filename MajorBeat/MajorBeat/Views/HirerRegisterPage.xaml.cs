@@ -49,5 +49,12 @@ public partial class HirerRegisterPage : ContentPage
         await Navigation.PushAsync(new InitialPage());
     }
 
-   
+    private async void CreateProfile(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new MusicianProfilePage());
+    }
+
+
+
+
 }
