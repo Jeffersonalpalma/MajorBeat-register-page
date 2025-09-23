@@ -11,6 +11,6 @@ public partial class InitialPage : ContentPage
 
     private async void register_Clicked(object sender, EventArgs e)
     {
-		await Navigation.PushAsync(new HirerRegisterPage());
+		await Navigation.PushAsync(new UserRegisterView());
     }
 }

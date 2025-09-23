@@ -1,24 +1,26 @@
 using MajorBeat.ViewModels;
+using MajorBeat.Views.Contratante;
 
 namespace MajorBeat.Views;
 
-public partial class HirerRegisterPage : ContentPage
+public partial class UserRegisterView : ContentPage
 {
-	UsuarioViewModel viewModel;
-	public HirerRegisterPage()
-	{
-		InitializeComponent();
+    UsuarioViewModel viewModel;
+    public UserRegisterView()
+    {
+        InitializeComponent();
 
-		viewModel = new UsuarioViewModel();
-		BindingContext = viewModel;
+        viewModel = new UsuarioViewModel();
+        BindingContext = viewModel;
 
 
-	}
+    }
     private void AtualizarCampos()
     {
         // Mostrar o campo empresa apenas se for Contratante E tiver selecionado "Sim"
         if (ContratanteRadio.IsChecked)
         {
+            Nome.IsVisible = true;
             ContratanteFields.IsVisible = true;
             if (sim.IsChecked)
             {
@@ -28,30 +30,34 @@ public partial class HirerRegisterPage : ContentPage
             {
                 EmpresaFields.IsVisible = false;
             }
-            
+
         }
         else
         {
+            Nome.IsVisible = true;
             EmpresaFields.IsVisible = false;
             ContratanteFields.IsVisible = false;
         }
-
-        // Mostrar o campo banda apenas se for Músico e tiver escolhido "Banda"
         if (MusicoRadio.IsChecked)
         {
             MusicoFields.IsVisible = true;
+            Nome.IsVisible = true;
 
-            
             if (Choice.SelectedItem?.ToString() == "Banda")
             {
                 CampoBanda.IsVisible = true;
                 Nome.IsVisible = false;
+            }
+            else
+            {
+                CampoBanda.IsVisible = false;
             }
         }
         else
         {
             MusicoFields.IsVisible = false;
             CampoBanda.IsVisible = false;
+            Nome.IsVisible = true;
         }
     }
 
@@ -61,8 +67,8 @@ public partial class HirerRegisterPage : ContentPage
     }
     private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-       AtualizarCampos();
-        
+        AtualizarCampos();
+
     }
     private void RadioButton_empresaChanged(object sender, CheckedChangedEventArgs e)
     {
@@ -78,7 +84,7 @@ public partial class HirerRegisterPage : ContentPage
 
     private async void CreateProfile(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new MusicianProfilePage());
+        await Navigation.PushAsync(new HirerProfileView());
     }
 
 

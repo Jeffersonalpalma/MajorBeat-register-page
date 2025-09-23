@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MajorBeat.Views.HirerRegisterPage"
+             x:Class="MajorBeat.Views.UserRegisterView"
              BackgroundColor="#4F1271"
              Shell.NavBarIsVisible="False">
     <ScrollView>
@@ -12,10 +12,10 @@
                 <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
                 <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
             </Grid>
-            
+
             <Label Text="Criar sua conta" HorizontalTextAlignment="Center" FontSize="25" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold"></Label>
 
- 
+
 
             <!-- botão musico contratante-->
             <Grid Margin="0,20,0,0">
@@ -25,9 +25,9 @@
                  HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7" CheckedChanged="RadioButton_CheckedChanged"/>
             </Grid>
 
-                <!-- botão solo banda-->
-                <VerticalStackLayout  x:Name="MusicoFields" IsVisible="True">
-                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,25,0" WidthRequest="80" HorizontalOptions="End">
+            <!-- botão solo banda-->
+            <VerticalStackLayout  x:Name="MusicoFields" IsVisible="True">
+                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,25,0" WidthRequest="80" HorizontalOptions="End">
                     <Picker
                                 x:Name="Choice"
                                 Grid.Row="0"
@@ -38,14 +38,14 @@
                                 SelectedIndexChanged="TipoPicker">
 
                         <Picker.ItemsSource>
-                                <x:Array Type="{x:Type x:String}">
-                                    <x:String>Solo</x:String>
-                                    <x:String>Banda</x:String>
-                                </x:Array>
-                            </Picker.ItemsSource>
-                        </Picker>
-                    </Border>
-                </VerticalStackLayout>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Solo</x:String>
+                                <x:String>Banda</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Border>
+            </VerticalStackLayout>
 
 
             <!-- Campos exclusivos para Músico 
@@ -99,7 +99,7 @@
                     <Entry Placeholder="Ex:anderson.francisco@gmail.com" PlaceholderColor="#604F1271" HeightRequest="55" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Email}"></Entry>
                 </Border>
             </Grid>
-            
+
             <!--TELEFONE-->
 
             <Label Grid.Row="0" Text="Telefone" TextColor="#e7e7e7" Margin="35,20,0,0" FontSize="16"  FontFamily="InterBold" FontAttributes="Bold"></Label>
@@ -112,8 +112,8 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                   
-                    
+
+
                     <Picker
                     Grid.Row="0"
                     WidthRequest="60"
@@ -167,8 +167,8 @@
 
 
             <!--ENDERECO-->
-            
-            
+
+
             <Grid Margin="0,35,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -183,7 +183,7 @@
 
                 <Label Grid.Row="0" Text="Endereço" TextColor="#e7e7e7" Margin="25,-5,0,0" FontSize="18"  FontFamily="InterBold" FontAttributes="Bold" ></Label>
 
-            <Grid Margin="0,45,0,0">
+                <Grid Margin="0,45,0,0">
 
 
                     <Label Grid.Row="1" Text="Logradouro:" TextColor="#e7e7e7"  FontFamily="InterBold" FontAttributes="Bold" Margin="25,0,0,0" HorizontalTextAlignment="Start"></Label>
@@ -197,13 +197,13 @@
                     </Border>
                 </Grid>
 
-                
-            <Grid Margin="0,150,0,0">
+
+                <Grid Margin="0,150,0,0">
 
                     <Label Grid.Row="3" Text="CEP:" TextColor="#e7e7e7" Margin="25,-10,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                 <Border   Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="130" Margin="15,-90,0,0" HorizontalOptions="Start" HeightRequest="55">
+                    <Border   Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="130" Margin="15,-90,0,0" HorizontalOptions="Start" HeightRequest="55">
                         <Entry Grid.Row="4" Placeholder="Ex:23987501" Margin="0,0,0,0" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding Cep}"></Entry>
-                 </Border>
+                    </Border>
 
                     <Label  Grid.Row="3" Text="Bairro:" HorizontalTextAlignment="Center" TextColor="#e7e7e7" Margin="0,-10,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
                     <Border  Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="220" Margin="0,-90,30,0" HorizontalOptions="End" HeightRequest="55">
@@ -211,20 +211,20 @@
                     </Border>
                 </Grid>
 
-            <Grid Margin="0,300,0,0">
+                <Grid Margin="0,300,0,0">
                     <Label  Grid.Row="5" Text="Cidade:" TextColor="#e7e7e7" Margin="22,-50,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
-                 <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="175" Margin="10,-30,0,0" HorizontalOptions="Start" HeightRequest="55">
+                    <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="175" Margin="10,-30,0,0" HorizontalOptions="Start" HeightRequest="55">
                         <Entry  Grid.Row="6" Placeholder="Ex: Campinas" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding Cidade}"></Entry>
-                </Border>
+                    </Border>
 
                     <Label  Grid.Row="5" Text="UF:" Margin="0,-50,150,0" TextColor="#e7e7e7" HorizontalOptions="End" FontAttributes="Bold"  FontFamily="InterBold"></Label>
                     <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="180" Margin="0,-30,30,0" HorizontalOptions="End" HeightRequest="55" >
                         <Entry  Grid.Row="6" Placeholder="Ex: São Paulo" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271"  BackgroundColor="Transparent" Text="{Binding Uf}"></Entry>
                     </Border>
-            </Grid>
+                </Grid>
 
-           
-    </Grid>
+
+            </Grid>
 
             <Grid Margin="0,50,0,10">
                 <Grid.RowDefinitions>
@@ -258,7 +258,7 @@
                 <!--Command="{Binding RegistrarCommand}"-->
                 <Label  Grid.Row="1" Text="Termos de Uso e Política de Privacidade" HorizontalOptions="Center" TextColor="#e7e7e7" Margin="0,30,0,0"></Label>
             </Grid>
-            
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

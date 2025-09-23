@@ -13,8 +13,8 @@
         Route="InitialPage" />
 
     <ShellContent    
-    ContentTemplate="{DataTemplate local:HirerRegisterPage}"
-    Route="HirerRegisterPage"
+    ContentTemplate="{DataTemplate local:UserRegisterView}"
+    Route="UserRegisterView"
     Shell.BackgroundColor="#4F1271"/>
 
 </Shell>
