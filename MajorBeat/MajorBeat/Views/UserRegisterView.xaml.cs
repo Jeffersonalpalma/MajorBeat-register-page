@@ -1,5 +1,6 @@
 using MajorBeat.ViewModels;
 using MajorBeat.Views.Contratante;
+using MajorBeat.Views.Musico;
 
 namespace MajorBeat.Views;
 
@@ -84,7 +85,15 @@ public partial class UserRegisterView : ContentPage
 
     private async void CreateProfile(object sender, EventArgs e)
     {
+        if (ContratanteRadio.IsChecked) { 
         await Navigation.PushAsync(new HirerProfileView());
+        }else if(MusicoRadio.IsChecked && Choice.SelectedItem?.ToString() == "Banda") {
+            await Navigation.PushAsync(new MusicianProfileView());
+        }
+        else
+        {
+            await Navigation.PushAsync(new MusicianProfileView());
+        }
     }
 
 
