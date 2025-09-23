@@ -15,25 +15,7 @@
             
             <Label Text="Criar sua conta" HorizontalTextAlignment="Center" FontSize="25" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold"></Label>
 
-            <!-- botão solo banda-->
-            <VerticalStackLayout  x:Name="MusicoFields" IsVisible="True">
-            <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="80" HorizontalOptions="End">
-            <Picker
-                Grid.Row="0"
-                WidthRequest="60"
-                HorizontalOptions="End"
-                Margin="0,5,10,0"
-                ZIndex="1">
-                
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Solo</x:String>
-                        <x:String>Banda</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-            </Border>
-            </VerticalStackLayout>
+ 
 
             <!-- botão musico contratante-->
             <Grid Margin="0,20,0,0">
@@ -42,6 +24,27 @@
                 <RadioButton x:Name="ContratanteRadio" Content="Contratante" GroupName="UserType" TextColor="#e7e7e7" IsChecked="False"
                  HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7" CheckedChanged="RadioButton_CheckedChanged"/>
             </Grid>
+
+                <!-- botão solo banda-->
+                <VerticalStackLayout  x:Name="MusicoFields" IsVisible="True">
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,25,0" WidthRequest="80" HorizontalOptions="End">
+                    <Picker
+                                Grid.Row="0"
+                                WidthRequest="60"
+                                HorizontalOptions="End"
+                                Margin="0,5,0,0"
+                                ZIndex="1">
+
+                        <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Solo</x:String>
+                                    <x:String>Banda</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Border>
+                </VerticalStackLayout>
+
 
             <!-- Campos exclusivos para Músico 
             <VerticalStackLayout x:Name="MusicoFields" IsVisible="True" Margin="0,10,0,0" Spacing="15">
@@ -125,12 +128,22 @@
                 <Label Margin="40,20,0,0" FontSize="15" TextColor="white">Você está criando este perfil em nome de uma empresa (ex.: restaurante, bar, casa de shows)?</Label>
                 <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370"  HeightRequest="55">
                     <Grid Margin="0,0,0,0">
-                        <RadioButton x:Name="sim" Content="Sim" GroupName="Type" TextColor="#4F1271" IsChecked="True"
-                        HorizontalOptions="Center" FontSize="15" Margin="0,0,190,0" BorderColor="#e7e7e7" />
-                        <RadioButton x:Name="nao" Content="Não" GroupName="Type" TextColor="#4F1271" IsChecked="False"
-                        HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7" />
+                        <RadioButton x:Name="nao" Content="Não" GroupName="Type" TextColor="#4F1271" IsChecked="True"
+                        HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7" CheckedChanged="RadioButton_empresaChanged"/>
+                        <RadioButton x:Name="sim" Content="Sim" GroupName="Type" TextColor="#4F1271" IsChecked="False"
+                        HorizontalOptions="Center" FontSize="15" Margin="0,0,190,0" BorderColor="#e7e7e7" CheckedChanged="RadioButton_empresaChanged"/>
                     </Grid>
                 </Border>
+            </VerticalStackLayout>
+
+
+            <VerticalStackLayout x:Name="EmpresaFields" IsVisible="False" Margin="0,10,0,0">
+                <Grid Margin="0,20,0,0">
+                    <Label Text="Nome da Empresa:" HorizontalOptions="Start" Margin="38,0,0,0" FontSize="16"  FontAttributes="Bold" FontFamily="InterBold" TextColor="#e7e7e7"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
+                        <Entry Placeholder="Ex:Panelão do Norte" PlaceholderColor="#604F1271" HeightRequest="55" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Email}"></Entry>
+                    </Border>
+                </Grid>
             </VerticalStackLayout>
 
 

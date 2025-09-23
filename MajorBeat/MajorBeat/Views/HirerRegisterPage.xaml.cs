@@ -30,6 +30,18 @@ public partial class HirerRegisterPage : ContentPage
             }
         }
     }
+    private void RadioButton_empresaChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (sender == sim)
+        {
+            EmpresaFields.IsVisible = true;
+        }
+        else
+        {
+            EmpresaFields.IsVisible = false;
+        }
+
+    }
 
 
     private async void voltar_Clicked_1(object sender, EventArgs e)
