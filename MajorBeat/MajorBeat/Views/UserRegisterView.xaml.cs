@@ -13,6 +13,7 @@ public partial class UserRegisterView : ContentPage
 
         viewModel = new UsuarioViewModel();
         BindingContext = viewModel;
+        AtualizarCampos();
 
 
     }

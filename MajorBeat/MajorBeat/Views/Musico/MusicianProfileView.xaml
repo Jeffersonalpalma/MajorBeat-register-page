@@ -48,8 +48,9 @@
                 </Border>
 
             </Grid>
+            <VerticalStackLayout WidthRequest="370">
 
-            <Grid Margin="0,25,0,0">
+                <Grid Margin="0,25,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -61,15 +62,119 @@
                 </Border>
             </Grid>
 
+            <!--contatos-->
             <Grid Margin="0,25,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Text="Biografia" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
-                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="200">
-                    <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold"></Editor>
+
+                <Label Grid.Row="0" Text="Contatos" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="165">
+                    <VerticalStackLayout>
+                        <Grid HeightRequest="55">
+                            <Label Text="Adicionar links" TextColor="#4F1271" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,0" HorizontalTextAlignment="Start"/>
+                            <BoxView 
+                                    HeightRequest="1"        
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="0,60,0,0"/>
+                        </Grid>
+                        <Grid>
+                            <Grid WidthRequest="120" 
+                                      Margin="50,0,0,0" 
+                                      HorizontalOptions="Start">
+
+                                <Image Source="linkedin.png"
+                                           HeightRequest="30"
+                                           WidthRequest="30"
+                                           Margin="0,0,160,0"/>
+                                <Entry Placeholder="Adicionar +" 
+                                           PlaceholderColor="#604F1271" 
+                                           FontAttributes="Bold" 
+                                           FontFamily="InterBold" 
+                                           HeightRequest="55"/>
+
+                            </Grid>
+                            <Grid WidthRequest="120" 
+                                      Margin="0,0,30,0" 
+                                      HorizontalOptions="End">
+
+                                <Image Source="instagram.png"
+                                           HeightRequest="30"
+                                           WidthRequest="30"
+                                           Margin="0,0,160,0"/>
+                                <Entry  
+                                           Placeholder="Adicionar +" 
+                                           PlaceholderColor="#604F1271" 
+                                           FontAttributes="Bold" 
+                                           FontFamily="InterBold" 
+                                           HeightRequest="55"/>
+                            </Grid>
+                        </Grid>
+                        <Grid>
+                            <Grid WidthRequest="120" 
+                                      Margin="50,0,0,0" 
+                                      HorizontalOptions="Start">
+
+                                <Image Source="facebook.png"
+                                           HeightRequest="30"
+                                           WidthRequest="30"
+                                           Margin="0,0,160,0"/>
+
+                                <Entry Grid.Row="1" 
+                                           Placeholder="Adicionar +" 
+                                           PlaceholderColor="#604F1271" 
+                                           FontAttributes="Bold" 
+                                           FontFamily="InterBold" 
+                                           HeightRequest="55"/>
+
+                            </Grid>
+                            <Grid WidthRequest="120" 
+                                      Margin="0,0,30,0" 
+                                      HorizontalOptions="End" >
+
+                                <Image Source="twitter.png"
+                                               HeightRequest="30"
+                                               WidthRequest="30"
+                                               Margin="0,0,160,0"/>
+
+                                <Entry 
+                                               Grid.Row="1" 
+                                               Placeholder="Adicionar +" 
+                                               PlaceholderColor="#604F1271" 
+                                               FontAttributes="Bold" 
+                                               FontFamily="InterBold" 
+                                               HeightRequest="55"/>
+                            </Grid>
+                        </Grid>
+                    </VerticalStackLayout>
                 </Border>
+            </Grid>
+
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Biografia" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="200">
+                        <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold"></Editor>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+            
+            <Grid Margin="0,-20,0,50">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <Button Grid.Row="0" Text="Criar Perfil" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="200" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" ></Button>
+                <!--Command="{Binding RegistrarCommand}"-->
+                <Label  Grid.Row="1" Text="Termos de Uso e Política de Privacidade" HorizontalOptions="Center" TextColor="#e7e7e7" Margin="0,30,0,0"></Label>
             </Grid>
         </VerticalStackLayout>
     </ScrollView>
