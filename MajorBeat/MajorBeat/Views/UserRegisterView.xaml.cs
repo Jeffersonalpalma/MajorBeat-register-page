@@ -86,14 +86,11 @@ public partial class UserRegisterView : ContentPage
 
     private async void CreateProfile(object sender, EventArgs e)
     {
+        string escolha = Choice.SelectedItem?.ToString();
         if (ContratanteRadio.IsChecked) { 
         await Navigation.PushAsync(new HirerProfileView());
-        }else if(MusicoRadio.IsChecked && Choice.SelectedItem?.ToString() == "Banda") {
-            await Navigation.PushAsync(new MusicianProfileView());
-        }
-        else
-        {
-            await Navigation.PushAsync(new MusicianProfileView());
+        }else if(MusicoRadio.IsChecked) {
+            await Navigation.PushAsync(new MusicianProfileView(escolha));
         }
     }
 

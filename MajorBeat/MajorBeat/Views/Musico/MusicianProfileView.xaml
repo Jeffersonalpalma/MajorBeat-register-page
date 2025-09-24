@@ -13,7 +13,19 @@
             </Grid>
 
             <Label 
+            x:Name="musicoField1"
             Text="Criar Perfil"
+            TextColor="White"
+            FontSize="25"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            FontAttributes="Bold" 
+            FontFamily="InterBold"/>
+
+
+            <Label 
+            x:Name="bandaField"
+            Text="Criar Perfil da banda"
             TextColor="White"
             FontSize="25"
             VerticalOptions="Center" 
@@ -50,6 +62,7 @@
             </Grid>
             <VerticalStackLayout WidthRequest="370">
 
+                <VerticalStackLayout x:Name="musicoField">
                 <Grid Margin="0,25,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -61,6 +74,7 @@
                     <Entry Grid.Row="1" Placeholder="Ex: Marquinhos" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"></Entry>
                 </Border>
             </Grid>
+            </VerticalStackLayout>
 
             <!--contatos-->
             <Grid Margin="0,25,0,0">
