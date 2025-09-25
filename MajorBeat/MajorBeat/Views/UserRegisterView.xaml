@@ -31,6 +31,7 @@
             <VerticalStackLayout  x:Name="MusicoFields" IsVisible="True" HorizontalOptions="End">
                 <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="80">
                     <Picker
+                                Title="Selecione"
                                 x:Name="Choice"
                                 Grid.Row="0"
                                 WidthRequest="60"

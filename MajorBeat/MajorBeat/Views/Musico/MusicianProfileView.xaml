@@ -42,6 +42,7 @@
                        BackgroundColor="White"
                        Margin="0,25,0,0">
                     <Image Aspect="AspectFill"/>
+                    
                 </Frame>
                 <Border Stroke="Gray"
                     StrokeThickness="3"
@@ -60,111 +61,22 @@
                 </Border>
 
             </Grid>
+            <!--Apelido-->
             <VerticalStackLayout WidthRequest="370">
 
                 <VerticalStackLayout x:Name="musicoField">
-                <Grid Margin="0,25,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                    <Grid Margin="0,25,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                <Label Grid.Row="0" Text="Apelido" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
-                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
-                    <Entry Grid.Row="1" Placeholder="Ex: Marquinhos" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"></Entry>
-                </Border>
-            </Grid>
-            </VerticalStackLayout>
-
-            <!--contatos-->
-            <Grid Margin="0,25,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <Label Grid.Row="0" Text="Contatos" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
-                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="165">
-                    <VerticalStackLayout>
-                        <Grid HeightRequest="55">
-                            <Label Text="Adicionar links" TextColor="#4F1271" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,0" HorizontalTextAlignment="Start"/>
-                            <BoxView 
-                                    HeightRequest="1"        
-                                    BackgroundColor="Gray"
-                                    HorizontalOptions="FillAndExpand"
-                                    Margin="0,60,0,0"/>
-                        </Grid>
-                        <Grid>
-                            <Grid WidthRequest="120" 
-                                      Margin="50,0,0,0" 
-                                      HorizontalOptions="Start">
-
-                                <Image Source="linkedin.png"
-                                           HeightRequest="30"
-                                           WidthRequest="30"
-                                           Margin="0,0,160,0"/>
-                                <Entry Placeholder="Adicionar +" 
-                                           PlaceholderColor="#604F1271" 
-                                           FontAttributes="Bold" 
-                                           FontFamily="InterBold" 
-                                           HeightRequest="55"/>
-
-                            </Grid>
-                            <Grid WidthRequest="120" 
-                                      Margin="0,0,30,0" 
-                                      HorizontalOptions="End">
-
-                                <Image Source="instagram.png"
-                                           HeightRequest="30"
-                                           WidthRequest="30"
-                                           Margin="0,0,160,0"/>
-                                <Entry  
-                                           Placeholder="Adicionar +" 
-                                           PlaceholderColor="#604F1271" 
-                                           FontAttributes="Bold" 
-                                           FontFamily="InterBold" 
-                                           HeightRequest="55"/>
-                            </Grid>
-                        </Grid>
-                        <Grid>
-                            <Grid WidthRequest="120" 
-                                      Margin="50,0,0,0" 
-                                      HorizontalOptions="Start">
-
-                                <Image Source="facebook.png"
-                                           HeightRequest="30"
-                                           WidthRequest="30"
-                                           Margin="0,0,160,0"/>
-
-                                <Entry Grid.Row="1" 
-                                           Placeholder="Adicionar +" 
-                                           PlaceholderColor="#604F1271" 
-                                           FontAttributes="Bold" 
-                                           FontFamily="InterBold" 
-                                           HeightRequest="55"/>
-
-                            </Grid>
-                            <Grid WidthRequest="120" 
-                                      Margin="0,0,30,0" 
-                                      HorizontalOptions="End" >
-
-                                <Image Source="twitter.png"
-                                               HeightRequest="30"
-                                               WidthRequest="30"
-                                               Margin="0,0,160,0"/>
-
-                                <Entry 
-                                               Grid.Row="1" 
-                                               Placeholder="Adicionar +" 
-                                               PlaceholderColor="#604F1271" 
-                                               FontAttributes="Bold" 
-                                               FontFamily="InterBold" 
-                                               HeightRequest="55"/>
-                            </Grid>
-                        </Grid>
-                    </VerticalStackLayout>
-                </Border>
-            </Grid>
+                        <Label Grid.Row="0" Text="Apelido" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                        <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
+                            <Entry Grid.Row="1" Placeholder="Ex: Marquinhos" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"></Entry>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
 
                 <Grid Margin="0,25,0,0">
                     <Grid.RowDefinitions>
@@ -177,7 +89,176 @@
                     </Border>
                 </Grid>
             </VerticalStackLayout>
-            
+
+            <!--Destaques-->
+            <VerticalStackLayout WidthRequest="370">
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Destaques" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="200">
+                        <VerticalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+
+                            <Border Stroke="#D9D9D9" StrokeShape="RoundRectangle 8" WidthRequest="185" HeightRequest="80" BackgroundColor="#D9D9D9" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="Imagem PNG" FontSize="14" TextColor="black" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Border>
+
+                            <Label Text="Adicione fotos e vídeos favoritos aqui mostrando o seu talento." TextColor="#604F1271" FontAttributes="Bold" FontSize="14" HorizontalTextAlignment="Center" Margin="10,0,10,0"/>
+                            <Button Text="Adicionar" BackgroundColor="#4F1271" TextColor="White" CornerRadius="10" WidthRequest="150"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+
+            <!--contatos-->
+            <VerticalStackLayout WidthRequest="370">
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Contatos" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="170">
+                        <VerticalStackLayout>
+                            <Grid HeightRequest="55">
+                                <Label Text="Adicionar links" TextColor="#4F1271" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,0" HorizontalTextAlignment="Start"/>
+                                <BoxView 
+                                    HeightRequest="1"        
+                                    BackgroundColor="Gray"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="0,60,0,0"/>
+                            </Grid>
+                            <Grid>
+                                <Grid WidthRequest="120" 
+                                    Margin="50,0,0,0" 
+                                    HorizontalOptions="Start">
+
+                                    <Image Source="linkedin.png"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        Margin="0,0,160,0"/>
+                                    <Entry Placeholder="Adicionar +" 
+                                           PlaceholderColor="#604F1271"
+                                           TextColor="#4F1271"
+                                           FontAttributes="Bold" 
+                                           FontFamily="InterBold" 
+                                           HeightRequest="55"/>
+
+                                </Grid>
+                                <Grid WidthRequest="120" 
+                                      Margin="0,0,30,0" 
+                                      HorizontalOptions="End">
+
+                                    <Image Source="instagram.png"
+                                         HeightRequest="30"
+                                         WidthRequest="30"
+                                         Margin="0,0,160,0"/>
+                                    <Entry Placeholder="Adicionar +" 
+                                         PlaceholderColor="#604F1271"
+                                         TextColor="#4F1271"
+                                         FontAttributes="Bold" 
+                                         FontFamily="InterBold" 
+                                         HeightRequest="55"/>
+                                </Grid>
+                            </Grid>
+                            <Grid>
+                                <Grid WidthRequest="120" 
+                                    Margin="50,0,0,0" 
+                                    HorizontalOptions="Start">
+
+                                    <Image Source="facebook.png"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        Margin="0,0,160,0"/>
+
+                                    <Entry Grid.Row="1" 
+                                        Placeholder="Adicionar +" 
+                                        PlaceholderColor="#604F1271"
+                                        TextColor="#4F1271"
+                                        FontAttributes="Bold" 
+                                        FontFamily="InterBold" 
+                                        HeightRequest="55"/>
+
+                                </Grid>
+                                <Grid WidthRequest="120" 
+                                      Margin="0,0,30,0" 
+                                      HorizontalOptions="End" >
+
+                                    <Image Source="twitter.png"
+                                        HeightRequest="30"
+                                        WidthRequest="30"
+                                        Margin="0,0,160,0"/>
+
+                                    <Entry Grid.Row="1" 
+                                        Placeholder="Adicionar +" 
+                                        PlaceholderColor="#604F1271" 
+                                        TextColor="#4F1271"
+                                        FontAttributes="Bold" 
+                                        FontFamily="InterBold" 
+                                        HeightRequest="55"/>
+                                </Grid>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+
+            <!--Instrumentos-->
+            <VerticalStackLayout WidthRequest="370">
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Instrumentos" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"/>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
+
+                        <VerticalStackLayout Padding="10" Spacing="15">
+                            <Entry Placeholder="Digite aqui o instrumento" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"/>
+                            
+                            <Picker Title="Selecione" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55">
+                                <Picker.Items>
+                                    <x:String>Violão</x:String>
+                                    <x:String>Guitarra</x:String>
+                                </Picker.Items>
+                            </Picker>
+
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+
+            <!--Estilos musicais-->
+            <VerticalStackLayout WidthRequest="370">
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Estilos musicais" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"/>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
+
+                        <VerticalStackLayout Padding="10" Spacing="15">
+                            <Entry Placeholder="Digite aqui o estilo musical" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"/>
+
+                            <Picker Title="Selecione" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55">
+                                <Picker.Items>
+                                    <x:String>Rock</x:String>
+                                    <x:String>Hip Hop</x:String>
+                                </Picker.Items>
+                            </Picker>
+
+                        </VerticalStackLayout>
+                    </Border>
+                </Grid>
+            </VerticalStackLayout>
+
             <Grid Margin="0,-20,0,50">
 
                 <Grid.RowDefinitions>
