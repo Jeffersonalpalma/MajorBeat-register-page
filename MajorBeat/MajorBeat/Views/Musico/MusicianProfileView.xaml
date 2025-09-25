@@ -78,20 +78,9 @@
                     </Grid>
                 </VerticalStackLayout>
 
-                <Grid Margin="0,25,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Text="Biografia" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
-                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="200">
-                        <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold"></Editor>
-                    </Border>
-                </Grid>
-            </VerticalStackLayout>
 
-            <!--Destaques-->
-            <VerticalStackLayout WidthRequest="370">
+                <!--Destaques-->
+            
                 <Grid Margin="0,25,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -111,10 +100,10 @@
                         </VerticalStackLayout>
                     </Border>
                 </Grid>
-            </VerticalStackLayout>
+            
 
             <!--contatos-->
-            <VerticalStackLayout WidthRequest="370">
+            
                 <Grid Margin="0,25,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -205,10 +194,10 @@
                         </VerticalStackLayout>
                     </Border>
                 </Grid>
-            </VerticalStackLayout>
+            
 
             <!--Instrumentos-->
-            <VerticalStackLayout WidthRequest="370">
+            
                 <Grid Margin="0,25,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -216,9 +205,9 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Text="Instrumentos" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"/>
-                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
 
-                        <VerticalStackLayout Padding="10" Spacing="15">
+                        <VerticalStackLayout>
                             <Entry Placeholder="Digite aqui o instrumento" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"/>
                             
                             <Picker Title="Selecione" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55">
@@ -231,10 +220,10 @@
                         </VerticalStackLayout>
                     </Border>
                 </Grid>
-            </VerticalStackLayout>
+            
 
             <!--Estilos musicais-->
-            <VerticalStackLayout WidthRequest="370">
+            
                 <Grid Margin="0,25,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -242,9 +231,9 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Text="Estilos musicais" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"/>
-                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
 
-                        <VerticalStackLayout Padding="10" Spacing="15">
+                        <VerticalStackLayout>
                             <Entry Placeholder="Digite aqui o estilo musical" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"/>
 
                             <Picker Title="Selecione" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55">
@@ -257,7 +246,20 @@
                         </VerticalStackLayout>
                     </Border>
                 </Grid>
+
+
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Biografia" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
+                        <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold"></Editor>
+                    </Border>
+                </Grid>
             </VerticalStackLayout>
+
 
             <Grid Margin="0,-20,0,50">
 
