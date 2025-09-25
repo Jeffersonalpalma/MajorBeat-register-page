@@ -41,7 +41,8 @@
                        VerticalOptions="Center"
                        BackgroundColor="White"
                        Margin="0,25,0,0">
-                    <Image Aspect="AspectFill"/>
+                    <Image Aspect="AspectFill"
+                           x:Name="SelectedImage"/>
                     
                 </Frame>
                 <Border Stroke="Gray"
@@ -57,7 +58,8 @@
                              BackgroundColor="White"
                              CornerRadius="30"
                              WidthRequest="30"
-                             HeightRequest="30"/>
+                             HeightRequest="30"
+                             Clicked="OnAddPhotoClicked"/>
                 </Border>
 
             </Grid>
