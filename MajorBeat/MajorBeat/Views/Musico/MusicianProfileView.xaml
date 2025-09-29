@@ -11,7 +11,7 @@
                 <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
                 <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
             </Grid>
-
+            <VerticalStackLayout WidthRequest="370">
             <Label 
             x:Name="musicoField1"
             Text="Criar Perfil"
@@ -34,18 +34,17 @@
             FontFamily="InterBold"/>
 
             <Grid>
-                <Frame HeightRequest="200"
+                    <Frame HeightRequest="200"
                        WidthRequest="200"
                        CornerRadius="100"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"
+                       IsClippedToBounds="True"
+                       Padding="0"
                        BackgroundColor="White"
                        Margin="0,25,0,0">
-                    <Image Aspect="AspectFill"
+                        <Image Aspect="AspectFill"
                            x:Name="SelectedImage"/>
-                    
-                </Frame>
-                <Border Stroke="Gray"
+                    </Frame>
+                    <Border Stroke="Gray"
                     StrokeThickness="3"
                     BackgroundColor="white"
                     HorizontalOptions="End"
@@ -64,7 +63,7 @@
 
             </Grid>
             <!--Apelido-->
-            <VerticalStackLayout WidthRequest="370">
+            
 
                 <VerticalStackLayout x:Name="musicoField">
                     <Grid Margin="0,25,0,0">
