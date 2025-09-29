@@ -59,7 +59,7 @@
                              CornerRadius="30"
                              WidthRequest="30"
                              HeightRequest="30"
-                             Command="{Binding OnAddPhotoCommand}"/>
+                             Command="{Binding AddPhotoCommand}"/>
                 </Border>
 
             </Grid>
