@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MajorBeat.Views.Users.UserRegisterView"
+             Title="UserRegisterView">
+    <ScrollView>
+        <VerticalStackLayout
+            VerticalOptions="Center">
+
+            <Grid>
+                <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Command="{Binding VoltarCommand }"/>
+                <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
+                <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
+            </Grid>
+
+            <Label Text="Criar sua conta" HorizontalTextAlignment="Center" FontSize="25" TextColor="#e7e7e7" FontAttributes="Bold" FontFamily="InterBold"></Label>
+
+
+
+            <!-- botão musico contratante-->
+            <Grid Margin="0,20,0,0">
+                <RadioButton x:Name="MusicoRadio" Content="Músico" GroupName="UserType" TextColor="#e7e7e7" IsChecked="True"
+                 HorizontalOptions="Center" FontSize="15" Margin="0,0,190,0" BorderColor="#e7e7e7" CheckedChanged="RadioButton_CheckedChanged"/>
+                <RadioButton x:Name="ContratanteRadio" Content="Contratante" GroupName="UserType" TextColor="#e7e7e7" IsChecked="False"
+                 HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7" CheckedChanged="RadioButton_CheckedChanged"/>
+            </Grid>
+            <VerticalStackLayout WidthRequest="370" Margin="0,0,0,0">
+
+                <!-- botão solo banda-->
+                <VerticalStackLayout  x:Name="MusicoFields" IsVisible="True" HorizontalOptions="End">
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="80">
+                        <Picker
+                                Title="Selecione"
+                                x:Name="Choice"
+                                Grid.Row="0"
+                                WidthRequest="60"
+                                HorizontalOptions="End"
+                                Margin="0,5,0,0"
+                                ZIndex="1"
+                                TextColor="#4F1271"
+                                SelectedIndexChanged="TipoPicker">
+
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Solo</x:String>
+                                    <x:String>Banda</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Border>
+                </VerticalStackLayout>
+
+
+                <!-- Campos exclusivos para Músico 
+            <VerticalStackLayout x:Name="MusicoFields" IsVisible="True" Margin="0,10,0,0" Spacing="15">
+               Exemplo de campo exclusivo para músico 
+                <Grid Margin="0,20,0,0">
+                    <Label Text="Instrumento" TextColor="#e7e7e7" FontAttributes="Bold" FontSize="16" FontFamily="InterBold" Margin="40,0,0,0" />
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
+                        <Entry Placeholder="Informe seu instrumento" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" />
+                    </Border>
+                </Grid>
+            </VerticalStackLayout> -->
+
+
+
+                <!--NOME COMPLETO-->
+
+                <Grid Margin="0,25,0,0"
+                   x:Name="Nome">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Nome Completo" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border Style="{StaticResource EntryBorder}">
+                        <Entry Grid.Row="1" Placeholder="Ex: Anderson Francisco Costa" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
+                    </Border>
+                </Grid>
+
+                <Grid Margin="0,25,0,0" x:Name="CampoBanda">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Nome da Banda" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Border Style="{StaticResource EntryBorder}">
+                        <Entry Grid.Row="1" Placeholder="Ex:Slipknot" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
+                    </Border>
+                </Grid>
+
+
+
+
+                <!--E-MAIL-->
+
+                <Grid Margin="0,40,0,0">
+                    <Label Text="E-mail" HorizontalOptions="Start" Margin="38,0,0,0" FontSize="16"  FontAttributes="Bold" FontFamily="InterBold" TextColor="#e7e7e7"></Label>
+                    <Border Style="{StaticResource EntryBorder}">
+                        <Entry Placeholder="Ex:anderson.francisco@gmail.com" PlaceholderColor="#604F1271" HeightRequest="55" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Email}"></Entry>
+                    </Border>
+                </Grid>
+
+                <!--TELEFONE-->
+
+                <Label Grid.Row="0" Text="Telefone" TextColor="#e7e7e7" Margin="35,20,0,0" FontSize="16"  FontFamily="InterBold" FontAttributes="Bold"></Label>
+
+                <Border  Style="{StaticResource EntryBorder}">
+
+                    <Grid Margin="40,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+
+
+                        <Picker
+                    Grid.Row="0"
+                    WidthRequest="60"
+                    HorizontalOptions="Start"
+                    Margin="0,5,0,0"
+                    ZIndex="1"
+                    
+                    >
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>+55</x:String>
+                                    <x:String>+351</x:String>
+                                    <x:String>+81</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+
+                        <Label Margin="65,0,0,0" FontSize="30" TextColor="#7F5297">|</Label>
+
+                        <Entry Placeholder="Ex:(11) 95802-7781" HorizontalOptions="Center" Margin="300,0,149,0" WidthRequest="330" HeightRequest="55" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding Telefone}"></Entry>
+
+                    </Grid>
+                </Border>
+
+                <!--nome empresa-->
+                <VerticalStackLayout x:Name="ContratanteFields" IsVisible="False" Margin="0,10,0,0">
+                    <Label Margin="30,20,0,0" FontSize="15" Text="Você está criando este perfil em nome de uma empresa (ex.: restaurante, bar, casa de shows)?" FontAttributes="Bold" FontFamily="InterBold"  TextColor="white"></Label>
+                    <Border Style="{StaticResource EntryBorder}">
+                        <Grid Margin="0,0,0,0">
+                            <RadioButton x:Name="nao" Content="Não" GroupName="Type" TextColor="#4F1271" IsChecked="True"
+                        HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7" CheckedChanged="RadioButton_empresaChanged"/>
+                            <RadioButton x:Name="sim" Content="Sim" GroupName="Type" TextColor="#4F1271" IsChecked="False"
+                        HorizontalOptions="Center" FontSize="15" Margin="0,0,190,0" BorderColor="#e7e7e7" CheckedChanged="RadioButton_empresaChanged"/>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+
+                <VerticalStackLayout x:Name="EmpresaFields" IsVisible="False" Margin="0,10,0,0">
+                    <Grid Margin="0,20,0,0">
+                        <Label Text="Nome da Empresa:" HorizontalOptions="Start" Margin="38,0,0,0" FontSize="16"  FontAttributes="Bold" FontFamily="InterBold" TextColor="#e7e7e7"></Label>
+                        <Border Style="{StaticResource EntryBorder}">
+                            <Entry Placeholder="Ex:Panelão do Norte" PlaceholderColor="#604F1271" HeightRequest="55" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Email}"></Entry>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+
+
+
+
+
+
+                <!--ENDERECO-->
+
+
+                <Grid Margin="0,35,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+
+                    <Label Grid.Row="0" Text="Endereço" TextColor="#e7e7e7" Margin="25,-5,0,0" FontSize="18"  FontFamily="InterBold" FontAttributes="Bold" ></Label>
+
+                    <Grid Margin="0,45,0,0">
+
+
+                        <!--logradouro-->
+                        <Label Grid.Row="1" Text="Logradouro:" TextColor="#e7e7e7"  FontFamily="InterBold" FontAttributes="Bold" Margin="25,0,0,0" HorizontalTextAlignment="Start"></Label>
+                        <Border   Grid.Row="2" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="220" Margin="0,-175,0,0" HorizontalOptions="Start" HeightRequest="55">
+                            <Entry Grid.Row="2" Placeholder="Ex: R.Alcântara" HorizontalOptions="Start" Margin="0,0,0,0" WidthRequest="190" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding Logradouro}"></Entry>
+                        </Border>
+
+                        <!--numero-->
+                        <Label Grid.Row="1" Text="Número:" TextColor="#e7e7e7" HorizontalTextAlignment="Center" Margin="200,0,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                        <Border   Grid.Row="2" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="120" Margin="0,-175,0,0" HorizontalOptions="End" HeightRequest="55">
+                            <Entry Grid.Row="2" Placeholder="Ex: 1234" PlaceholderColor="#707F5297" HorizontalOptions="End" Margin="0,0,0,0" WidthRequest="110" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Numero}"></Entry>
+                        </Border>
+                    </Grid>
+
+
+                    <Grid Margin="0,150,0,0">
+
+                        <!--cep-->
+                        <Label Grid.Row="3" Text="CEP:" TextColor="#e7e7e7" Margin="25,-10,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                        <Border   Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="130" Margin="0,-90,0,0" HorizontalOptions="Start" HeightRequest="55">
+                            <Entry Grid.Row="4" Placeholder="Ex:23987501" Margin="0,0,0,0" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding Cep}"></Entry>
+                        </Border>
+
+                        <!--bairro-->
+                        <Label  Grid.Row="3" Text="Bairro:" HorizontalTextAlignment="Center" TextColor="#e7e7e7" Margin="0,-10,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                        <Border  Grid.Row="4" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="220" Margin="0,-90,0,0" HorizontalOptions="End" HeightRequest="55">
+                            <Entry   Grid.Row="4" Placeholder="Ex: Vila Maria Alta" PlaceholderColor="#707F5297" Margin="0,0,0,0" HorizontalOptions="Center" WidthRequest="200" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Bairro}"></Entry>
+                        </Border>
+                    </Grid>
+
+                    <Grid Margin="0,300,0,0">
+                        <!--cidade-->
+                        <Label  Grid.Row="5" Text="Cidade:" TextColor="#e7e7e7" Margin="22,-50,0,0" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                        <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="175" Margin="0,-30,0,0" HorizontalOptions="Start" HeightRequest="55">
+                            <Entry  Grid.Row="6" Placeholder="Ex: Campinas" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271" Text="{Binding Cidade}"></Entry>
+                        </Border>
+
+                        <!--uf-->
+                        <Label  Grid.Row="5" Text="UF:" Margin="0,-50,150,0" TextColor="#e7e7e7" HorizontalOptions="End" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                        <Border  Grid.Row="6" StrokeShape="RoundRectangle 10" BackgroundColor="#E7E7E7" WidthRequest="180" Margin="0,-30,0,0" HorizontalOptions="End" HeightRequest="55" >
+                            <Entry  Grid.Row="6" Placeholder="Ex: São Paulo" FontAttributes="Bold" FontFamily="InterBold" PlaceholderColor="#604F1271"  BackgroundColor="Transparent" Text="{Binding Uf}"></Entry>
+                        </Border>
+                    </Grid>
+
+
+                </Grid>
+
+                <!--senha-->
+                <Grid Margin="0,40,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Senha" TextColor="#e7e7e7" Margin="40,0,0,0" FontAttributes="Bold" FontSize="16"  FontFamily="InterBold"></Label>
+                    <Border  Style="{StaticResource EntryBorder}">
+                        <Entry Grid.Row="1" Placeholder="Obs: Mínimo 8 caracteres" WidthRequest="325" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Senha}"></Entry>
+                    </Border>
+                </Grid>
+                <Grid Margin="0,25,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Text="Confirmar Senha" Margin="40,0,0,0" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold"  FontFamily="InterBold"></Label>
+                    <Border Style="{StaticResource EntryBorder}">
+                        <Entry Grid.Row="1" Placeholder="Confirme sua senha" WidthRequest="325" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Senha}"></Entry>
+                    </Border>
+                </Grid>
+
+            </VerticalStackLayout>
+            <Grid Margin="0,-20,0,50">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <Button Clicked="CreateProfile" x:Name="criar" Grid.Row="0" Text="Criar Conta" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="200" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" ></Button>
+                <!--Command="{Binding RegistrarCommand}"-->
+                <Label  Grid.Row="1" Text="Termos de Uso e Política de Privacidade" HorizontalOptions="Center" TextColor="#e7e7e7" Margin="0,30,0,0"></Label>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

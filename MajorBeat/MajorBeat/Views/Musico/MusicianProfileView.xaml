@@ -7,7 +7,7 @@
     <ScrollView>
         <VerticalStackLayout>
             <Grid>
-                <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Clicked="voltar_Clicked_1"/>
+                <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Command="{Binding VoltarCommand}"/>
                 <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
                 <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
             </Grid>
@@ -58,7 +58,7 @@
                              CornerRadius="30"
                              WidthRequest="30"
                              HeightRequest="30"
-                             Clicked="OnAddPhotoClicked"/>
+                             Command="{Binding AddPhotoCommand}"/>
                 </Border>
 
             </Grid>
@@ -74,7 +74,7 @@
 
                         <Label Grid.Row="0" Text="Apelido" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                         <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
-                            <Entry Grid.Row="1" Placeholder="Ex: Marquinhos" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"></Entry>
+                            <Entry Grid.Row="1" Placeholder="Ex: Marquinhos" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"></Entry>
                         </Border>
                     </Grid>
                 </VerticalStackLayout>
@@ -256,7 +256,7 @@
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Text="Biografia" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
-                        <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold"></Editor>
+                        <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold"></Editor>
                     </Border>
                 </Grid>
             </VerticalStackLayout>

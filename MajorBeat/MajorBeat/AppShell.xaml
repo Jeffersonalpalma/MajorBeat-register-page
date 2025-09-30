@@ -4,17 +4,36 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MajorBeat.Views"
+    xmlns:viewsUsers="clr-namespace:MajorBeat.Views.Users"
+    xmlns:viewMusicians="clr-namespace:MajorBeat.Views.Musicians"
+    xmlns:viewHirers="clr-namespace:MajorBeat.Views.Hirers"
+    xmlns:viewsBands="clr-namespace:MajorBeat.Views.Bands"
     Shell.FlyoutBehavior="Disabled"
+    FlyoutIcon="homebuttoncircle.png"
+   
     
  >
 
-    <ShellContent
-        ContentTemplate="{DataTemplate local:InitialPage}"
-        Route="InitialPage" />
 
-    <ShellContent    
-    ContentTemplate="{DataTemplate local:UserRegisterView}"
-    Route="UserRegisterView"
-    Shell.BackgroundColor="#4F1271"/>
+
+    
+
+        <ShellContent Icon="homebuttoncircle.png"
+                 ContentTemplate="{DataTemplate viewMusicians:MusicianHomePage}" Route="MainPage"/>
+
+        <ShellContent Icon="searchbuttoncircle.png"
+                 ContentTemplate="{DataTemplate viewHirers:SearchPage}" />
+
+        <ShellContent  Icon="chathome.png"
+               ContentTemplate="{DataTemplate viewsBands:BandCreateProfile}"/>
+
+        <ShellContent Icon="calendar.png"
+               ContentTemplate="{DataTemplate viewHirers:CalendarPage}"/>
+
+        <ShellContent Icon="profilehome.png"
+            ContentTemplate="{DataTemplate local:ProfilePage}"/>
+
+
+
 
 </Shell>
