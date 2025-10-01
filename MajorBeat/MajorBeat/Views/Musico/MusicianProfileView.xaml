@@ -37,12 +37,10 @@
                 <Frame HeightRequest="200"
                        WidthRequest="200"
                        CornerRadius="100"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center"
                        BackgroundColor="White"
-                       Margin="0,25,0,0">
+                       Margin="0,0,0,0">
                     <Image Aspect="AspectFill"
-                           x:Name="SelectedImage"/>
+                           Source="{Binding FotoSelecionada}" />
                     
                 </Frame>
                 <Border Stroke="Gray"
@@ -59,8 +57,49 @@
                              CornerRadius="30"
                              WidthRequest="30"
                              HeightRequest="30"
-                             Command="{Binding OnAddPhotoCommand}"/>
+                             Command="{Binding AddPhotoCommand}"/>
                 </Border>
+
+
+
+
+
+
+
+                <Frame BackgroundColor="#f0f0f0" CornerRadius="10" Padding="10">
+                    <StackLayout>
+                        <SearchBar Placeholder="Digite aqui o instrumento"
+                       TextChanged="OnSearchTextChanged"
+                       PlaceholderColor="Purple"
+                       TextColor="Black"
+                       BackgroundColor="White"
+                       CancelButtonColor="Purple" />
+
+                        <CollectionView ItemsSource="{Binding InstrumentosFiltrados}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnInstrumentoSelecionado">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding .}" Padding="10" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Mostra a seleção -->
+                <Label Text="Selecionado:" FontAttributes="Bold" TextColor="White"/>
+                <Label Text="{Binding InstrumentoSelecionado}" TextColor="White"/>
+
+
+
+
+
+
+
+
+
+
 
             </Grid>
             <!--Apelido-->

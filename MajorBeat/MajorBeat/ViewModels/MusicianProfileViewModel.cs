@@ -1,3 +1,4 @@
+using MajorBeat.Models.Enums;
 using MajorBeat.Views;
 using System.Windows.Input;
 
@@ -5,61 +6,150 @@ namespace MajorBeat.ViewModels
 {
     public class MusicianProfileViewModel : BaseViewModel
     {
-        private readonly INavigation _navigation;
-        private readonly ContentPage _page;
-
-        public ICommand VoltarCommand { get; }
-        public ICommand AddPhotoCommand { get; }
-
-        public MusicianProfileViewModel(string escolha, INavigation navigation, ContentPage page)
+     
+        
+        private TipoMusico _tipo;
+        public TipoMusico Tipo
         {
-            _navigation = navigation;
-            _page = page;
-
-            if (escolha == "Banda")
+            get => _tipo;
+            set
             {
-                _page.FindByName<Label>("musicoField1").IsVisible = false;
-                _page.FindByName<VerticalStackLayout>("musicoField").IsVisible = false;
-                _page.FindByName<Label>("bandaField").IsVisible = true;
+                if (_tipo!=value)
+                {
+                    _tipo = value;
+                    onPropertyChanged(nameof(Tipo));       // atualiza o Picker
+                    onPropertyChanged(nameof(NomeLabel)); // atualiza label
+                }
             }
-            else
-            {
-                _page.FindByName<Label>("bandaField").IsVisible = false;
-                _page.FindByName<VerticalStackLayout>("musicoField").IsVisible = true;
-                _page.FindByName<Label>("musicoField1").IsVisible = true;
-            }
-
-            VoltarCommand = new Command(async () => await _navigation.PushAsync(new UserRegisterView()));
-            AddPhotoCommand = new Command(async () => await OnAddPhotoClicked());
         }
 
-        private async Task OnAddPhotoClicked()
+       
+
+        // Label dinâmico
+        public string NomeLabel => Tipo == TipoMusico.Solo ? "Nome" : "Nome da Banda";
+
+        // Lista pro Picker
+        public IEnumerable<TipoMusico> Tipos => Enum.GetValues(typeof(TipoMusico)).Cast<TipoMusico>();
+
+        private string nome = string.Empty;
+        public string Nome
         {
-            string action = await _page.DisplayActionSheet("Adicionar Foto", "Cancelar", null, "Escolher da Galeria", "Tirar Foto");
-
-            FileResult photo = null;
-
-            try
+            get { return nome; }
+            set
             {
-                if (action == "Escolher da Galeria")
-                {
-                    photo = await MediaPicker.PickPhotoAsync();
-                }
-                else if (action == "Tirar Foto")
-                {
-                    photo = await MediaPicker.CapturePhotoAsync();
-                }
-
-                if (photo != null)
-                {
-                    var stream = await photo.OpenReadAsync();
-                    var selectedImage = _page.FindByName<Image>("SelectedImage");
-                    selectedImage.Source = ImageSource.FromStream(() => stream);
-                }
+                nome = value;
+                onPropertyChanged();
             }
-            catch (Exception ex)
+        }
+
+        private string email = string.Empty;
+        public string Email
+        {
+            get { return email; }
+            set
             {
-                await _page.DisplayAlert("Erro", "Não foi possível obter a imagem: " + ex.Message, "OK");
+                email = value;
+                onPropertyChanged();
+            }
+        }
+
+        private string telefone = string.Empty;
+        public string Telefone
+        {
+            get { return telefone; }
+            set
+            {
+                telefone = value;
+                onPropertyChanged();
+            }
+        }
+
+        private string logradouro = string.Empty;
+        public string Logradouro
+        {
+            get { return logradouro; }
+            set
+            {
+                logradouro = value;
+                onPropertyChanged();
+            }
+        }
+
+        private string numero = string.Empty;
+        public string Numero
+        {
+            get { return numero; }
+            set
+            {
+                numero = value;
+                onPropertyChanged();
+            }
+        }
+
+        private string cep = string.Empty;
+        public string Cep
+        {
+            get { return cep; }
+            set
+            {
+                cep = value;
+                onPropertyChanged();
+            }
+        }
+
+        private string bairro = string.Empty;
+        public string Bairro
+        {
+            get { return bairro; }
+            set
+            {
+                bairro = value;
+                onPropertyChanged();
+            }
+        }
+
+        private string cidade = string.Empty;
+        public string Cidade
+        {
+            get { return cidade; }
+            set
+            {
+                cidade = value;
+                onPropertyChanged();
+            }
+        }
+
+        private string uf = string.Empty;
+        public string Uf
+        {
+            get { return uf; }
+            set
+            {
+                uf = value;
+                onPropertyChanged();
+            }
+        }
+
+        private string senha = string.Empty;
+        public string Senha
+        {
+            get { return senha; }
+            set
+            {
+                senha = value;
+                onPropertyChanged();
+            }
+
+        }
+
+        private string codigoTelefone;
+        public string CodigoTelefone
+        {
+            get => codigoTelefone;
+            set
+            {
+                codigoTelefone = value;
+                onPropertyChanged();
             }
         }
     }

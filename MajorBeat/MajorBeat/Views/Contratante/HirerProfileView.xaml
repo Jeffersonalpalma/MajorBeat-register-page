@@ -29,7 +29,8 @@
                        VerticalOptions="Center"
                        BackgroundColor="White"
                        Margin="0,25,0,0">
-                    <Image Aspect="AspectFill"/>
+                    <Image Aspect="AspectFill"
+                           Source="{Binding FotoSelecionada}"/>
                 </Frame>
                 <Border Stroke="Gray"
                     StrokeThickness="3"
@@ -44,7 +45,8 @@
                              BackgroundColor="White"
                              CornerRadius="30"
                              WidthRequest="30"
-                             HeightRequest="30"/>
+                             HeightRequest="30"
+                             Command="{Binding AddPhotoCommand}"/>
                 </Border>
 
             </Grid>
