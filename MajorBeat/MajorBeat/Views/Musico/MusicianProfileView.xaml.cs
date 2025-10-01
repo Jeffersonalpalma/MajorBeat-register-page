@@ -1,55 +1,34 @@
+using MajorBeat.ViewModels;
+using MajorBeat.ViewModels.Musician;
+
 namespace MajorBeat.Views.Musico;
 
 public partial class MusicianProfileView : ContentPage
 {
-	public MusicianProfileView(string escolha)
-	{
-		InitializeComponent();
+    public MusicianProfileView()
+    {
+        InitializeComponent();
+        BindingContext = new viewmodelmodel();
+    }
 
-        if (escolha == "Banda")
-        {
-            musicoField1.IsVisible = false;
-            musicoField.IsVisible = false;
-            bandaField.IsVisible = true;  
-        }
-        else
-        {
-            bandaField.IsVisible = false;
-            musicoField.IsVisible = true;
-            musicoField1.IsVisible = true;
-        }
-	}
     private async void voltar_Clicked_1(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new UserRegisterView());
     }
+    private viewmodelmodel ViewModel => BindingContext as viewmodelmodel;
 
-    private async void OnAddPhotoClicked(object sender, EventArgs e)
+
+
+    private void OnSearchTextChanged(object sender, TextChangedEventArgs e)
     {
-        string action = await DisplayActionSheet("Adicionar Foto", "Cancelar", null, "Escolher da Galeria", "Tirar Foto");
+        ViewModel?.FiltrarInstrumentos(e.NewTextValue);
+    }
 
-        FileResult photo = null;
-
-        try
+    private void OnInstrumentoSelecionado(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is string instrumento)
         {
-            if (action == "Escolher da Galeria")
-            {
-                photo = await MediaPicker.PickPhotoAsync();
-            }
-            else if (action == "Tirar Foto")
-            {
-                photo = await MediaPicker.CapturePhotoAsync();
-            }
-
-            if (photo != null)
-            {
-                var stream = await photo.OpenReadAsync();
-                SelectedImage.Source = ImageSource.FromStream(() => stream);
-            }
-        }
-        catch (Exception ex)
-        {
-            await DisplayAlert("Erro", "Não foi possível obter a imagem: " + ex.Message, "OK");
+            ViewModel.InstrumentoSelecionado = instrumento;
         }
     }
 }

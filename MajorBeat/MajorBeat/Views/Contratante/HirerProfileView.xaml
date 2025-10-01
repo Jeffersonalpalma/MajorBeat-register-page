@@ -11,7 +11,7 @@
                 <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
                 <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
             </Grid>
-            <VerticalStackLayout WidthRequest="370">
+
             <Label 
             Text="Criar Perfil"
             TextColor="White"
@@ -25,12 +25,12 @@
                 <Frame HeightRequest="200"
                        WidthRequest="200"
                        CornerRadius="100"
-                       IsClippedToBounds="True"
-                       Padding="0"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
                        BackgroundColor="White"
                        Margin="0,25,0,0">
                     <Image Aspect="AspectFill"
-                           x:Name="SelectedImage"/>
+                           Source="{Binding FotoSelecionada}"/>
                 </Frame>
                 <Border Stroke="Gray"
                     StrokeThickness="3"
@@ -46,12 +46,12 @@
                              CornerRadius="30"
                              WidthRequest="30"
                              HeightRequest="30"
-                             Clicked="OnAddPhotoClicked"/>
+                             Command="{Binding AddPhotoCommand}"/>
                 </Border>
 
             </Grid>
 
-            
+            <VerticalStackLayout WidthRequest="370">
                 <!--nome perfil-->
             <Grid Margin="0,25,0,0">
                 <Grid.RowDefinitions>

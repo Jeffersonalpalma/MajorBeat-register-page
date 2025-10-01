@@ -7,11 +7,11 @@
     <ScrollView>
         <VerticalStackLayout>
             <Grid>
-                <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Clicked="voltar_Clicked_1"/>
+                <Button  x:Name="voltar" HeightRequest="40" WidthRequest="100" CornerRadius="36" HorizontalOptions="Start" Margin="20,40,0,40" BackgroundColor="#e7e7e7" Command="{Binding VoltarCommand}"/>
                 <Label Text="Voltar" FontSize="18" FontAttributes="Bold" FontFamily="InterBold" TextColor="#4F1271" Margin="0,46,250,0" HorizontalOptions="Center"/>
                 <Image Source="back.png" HeightRequest="20" Margin="-330,0,0,0"   ZIndex="1"/>
             </Grid>
-            <VerticalStackLayout WidthRequest="370">
+
             <Label 
             x:Name="musicoField1"
             Text="Criar Perfil"
@@ -34,17 +34,16 @@
             FontFamily="InterBold"/>
 
             <Grid>
-                    <Frame HeightRequest="200"
+                <Frame HeightRequest="200"
                        WidthRequest="200"
                        CornerRadius="100"
-                       IsClippedToBounds="True"
-                       Padding="0"
                        BackgroundColor="White"
-                       Margin="0,25,0,0">
-                        <Image Aspect="AspectFill"
-                           x:Name="SelectedImage"/>
-                    </Frame>
-                    <Border Stroke="Gray"
+                       Margin="0,0,0,0">
+                    <Image Aspect="AspectFill"
+                           Source="{Binding FotoSelecionada}" />
+                    
+                </Frame>
+                <Border Stroke="Gray"
                     StrokeThickness="3"
                     BackgroundColor="white"
                     HorizontalOptions="End"
@@ -58,12 +57,53 @@
                              CornerRadius="30"
                              WidthRequest="30"
                              HeightRequest="30"
-                             Clicked="OnAddPhotoClicked"/>
+                             Command="{Binding AddPhotoCommand}"/>
                 </Border>
+
+
+
+
+
+
+
+                <Frame BackgroundColor="#f0f0f0" CornerRadius="10" Padding="10">
+                    <StackLayout>
+                        <SearchBar Placeholder="Digite aqui o instrumento"
+                       TextChanged="OnSearchTextChanged"
+                       PlaceholderColor="Purple"
+                       TextColor="Black"
+                       BackgroundColor="White"
+                       CancelButtonColor="Purple" />
+
+                        <CollectionView ItemsSource="{Binding InstrumentosFiltrados}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnInstrumentoSelecionado">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding .}" Padding="10" />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Mostra a seleção -->
+                <Label Text="Selecionado:" FontAttributes="Bold" TextColor="White"/>
+                <Label Text="{Binding InstrumentoSelecionado}" TextColor="White"/>
+
+
+
+
+
+
+
+
+
+
 
             </Grid>
             <!--Apelido-->
-            
+            <VerticalStackLayout WidthRequest="370">
 
                 <VerticalStackLayout x:Name="musicoField">
                     <Grid Margin="0,25,0,0">
@@ -74,7 +114,7 @@
 
                         <Label Grid.Row="0" Text="Apelido" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                         <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
-                            <Entry Grid.Row="1" Placeholder="Ex: Marquinhos" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"></Entry>
+                            <Entry Grid.Row="1" Placeholder="Ex: Marquinhos" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"></Entry>
                         </Border>
                     </Grid>
                 </VerticalStackLayout>
@@ -256,7 +296,7 @@
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Text="Biografia" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
-                        <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold"></Editor>
+                        <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold"></Editor>
                     </Border>
                 </Grid>
             </VerticalStackLayout>
