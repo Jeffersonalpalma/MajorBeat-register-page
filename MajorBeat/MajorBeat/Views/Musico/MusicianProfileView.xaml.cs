@@ -1,14 +1,15 @@
 using MajorBeat.ViewModels;
+using MajorBeat.ViewModels.Hirers;
 using MajorBeat.ViewModels.Musician;
 
 namespace MajorBeat.Views.Musico;
 
 public partial class MusicianProfileView : ContentPage
 {
-    public MusicianProfileView()
+    public MusicianProfileView(viewmodelmodel viewModel)
     {
         InitializeComponent();
-        BindingContext = new viewmodelmodel();
+        BindingContext = viewModel;
     }
 
     private async void voltar_Clicked_1(object sender, EventArgs e)

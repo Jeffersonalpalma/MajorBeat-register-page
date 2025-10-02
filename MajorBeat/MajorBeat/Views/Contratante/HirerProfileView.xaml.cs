@@ -1,13 +1,19 @@
+using MajorBeat.Services.Usuarios;
 using MajorBeat.ViewModels;
+using MajorBeat.ViewModels.Hirers;
 
 namespace MajorBeat.Views.Contratante;
 
 public partial class HirerProfileView : ContentPage
 {
-	public HirerProfileView()
+	public HirerProfileView(cuzasviewmodel viewModel)
 	{
-		InitializeComponent();
-        BindingContext = new UsuarioViewModel();
+
+        InitializeComponent();
+
+        BindingContext = viewModel;
+
+
     }
     private async void voltar_Clicked_1(object sender, EventArgs e)
     {

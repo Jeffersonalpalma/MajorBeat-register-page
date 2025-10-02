@@ -1,4 +1,5 @@
-﻿using MajorBeat.Views.Contratante;
+﻿using MajorBeat.Services.Usuarios;
+using MajorBeat.Views.Contratante;
 using MajorBeat.Views.Musico;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace MajorBeat.ViewModels
 {
     public class PrincipalViewModel : BaseViewModel
     {
+        private readonly UsuarioService _userService;
         public MusicianProfileViewModel MusicoVM { get; }
         public UsuarioViewModel ContratanteVM { get; }
         private readonly INavigation _navigation;
@@ -38,8 +40,10 @@ namespace MajorBeat.ViewModels
         public PrincipalViewModel(INavigation navigation)
         {
             _navigation = navigation;
-            MusicoVM = new MusicianProfileViewModel();
-            ContratanteVM = new UsuarioViewModel();
+            
+            MusicoVM = new MusicianProfileViewModel(_navigation);//_navigation
+            ContratanteVM = new UsuarioViewModel(_navigation);
+
 
             ConfirmarCommand = new Command(async () => await OnConfirmarClicked());
         }
@@ -48,13 +52,12 @@ namespace MajorBeat.ViewModels
         {
             if (IsMusicoSelected)
             {
-                await _navigation.PushAsync(new MusicianProfileView());
-                // MusicoVM.CadastrarMusico();
+                //await _navigation.PushAsync(new MusicianProfileView());
+                await MusicoVM.UserSave();
             }
             else
             {
-                await _navigation.PushAsync(new HirerProfileView());
-                // ContratanteVM.RegistrarUsuario();
+                await ContratanteVM.UserSave();
             }
         }
     }

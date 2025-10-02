@@ -1,3 +1,4 @@
+using MajorBeat.Services.Usuarios;
 using MajorBeat.ViewModels;
 using MajorBeat.Views.Contratante;
 using MajorBeat.Views.Musico;

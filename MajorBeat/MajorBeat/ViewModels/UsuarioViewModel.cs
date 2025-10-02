@@ -1,5 +1,7 @@
 ﻿using MajorBeat.Models;
 using MajorBeat.Services.Usuarios;
+using MajorBeat.ViewModels.Hirers;
+using MajorBeat.Views.Contratante;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,55 +18,86 @@ namespace MajorBeat.ViewModels
         private UsuarioService uService;
 
 
-      //  public ICommand AddPhotoCommand { get; set; }
+        //  public ICommand AddPhotoCommand { get; set; }
 
+        public ICommand ProximoCommand { get; set; }
         public ICommand RegistrarCommand { get; set; }
-       
-      /*  private async Task OnAddPhotoClicked()
+        private readonly INavigation _navigation;
+
+        /*  private async Task OnAddPhotoClicked()
+          {
+              string action = await _page.DisplayActionSheet("Adicionar Foto", "Cancelar", null, "Escolher da Galeria", "Tirar Foto");
+
+              FileResult photo = null;
+
+              try
+              {
+                  if (action == "Escolher da Galeria")
+                  {
+                      photo = await MediaPicker.PickPhotoAsync();
+                  }
+                  else if (action == "Tirar Foto")
+                  {
+                      photo = await MediaPicker.CapturePhotoAsync();
+                  }
+
+                  if (photo != null)
+                  {
+                      var stream = await photo.OpenReadAsync();
+                      var selectedImage = _page.FindByName<Image>("SelectedImage1");
+                      selectedImage.Source = ImageSource.FromStream(() => stream);
+                  }
+              }
+              catch (Exception ex)
+              {
+                  await _page.DisplayAlert("Erro", "Não foi possível obter a imagem: " + ex.Message, "OK");
+              }
+          }*/
+
+        public UsuarioViewModel(INavigation navigation)
         {
-            string action = await _page.DisplayActionSheet("Adicionar Foto", "Cancelar", null, "Escolher da Galeria", "Tirar Foto");
+            _navigation = navigation;
 
-            FileResult photo = null;
-
-            try
-            {
-                if (action == "Escolher da Galeria")
-                {
-                    photo = await MediaPicker.PickPhotoAsync();
-                }
-                else if (action == "Tirar Foto")
-                {
-                    photo = await MediaPicker.CapturePhotoAsync();
-                }
-
-                if (photo != null)
-                {
-                    var stream = await photo.OpenReadAsync();
-                    var selectedImage = _page.FindByName<Image>("SelectedImage1");
-                    selectedImage.Source = ImageSource.FromStream(() => stream);
-                }
-            }
-            catch (Exception ex)
-            {
-                await _page.DisplayAlert("Erro", "Não foi possível obter a imagem: " + ex.Message, "OK");
-            }
-        }*/
-
-        public UsuarioViewModel()
-        {
-            uService = new UsuarioService();
+            //  uService = new UsuarioService();
             InicializarCommands();
             //AddPhotoCommand = new Command(async () => await OnAddPhotoClicked());
 
         }
         public void InicializarCommands()
         {
+            ProximoCommand = new Command(async () => await UserSave());
 
-  
-            RegistrarCommand = new Command(async () => await RegistrarUsuario());
+            // RegistrarCommand = new Command(async () => await RegistrarUsuario());
 
         }
+        public async Task UserSave()
+        {
+            Contratante u = new Contratante();
+            u.nome = Nome;
+            u.email = Email;
+            u.telefone = Telefone;
+            u.logradouro = Logradouro;
+            u.numero = Numero;
+            u.cep = Cep;
+            u.bairro = Bairro;
+            u.cidade = Cidade;
+            u.uf = Uf;
+            u.senha = Senha;
+            u.empresa = Empresa;
 
+            var cu = new cuzasviewmodel(u);
+            await _navigation.PushAsync(new HirerProfileView(cu));
+        }
+        private string empresa = string.Empty;
+        public string Empresa
+        {
+            get { return empresa; }
+            set
+            {
+                empresa = value;
+                onPropertyChanged();
+            }
+        }
         private string nome = string.Empty;
         public string Nome
         {
@@ -187,41 +220,7 @@ namespace MajorBeat.ViewModels
             }
         }
 
-        public async Task RegistrarUsuario()
-        {
-            try
-            {
-                Contratante u = new Contratante();
-                u.nome = Nome; 
-                u.email = Email;
-                u.telefone = Telefone;
-                u.logradouro = Logradouro;
-                u.numero = Numero;
-                u.cep = Cep;
-                u.bairro = Bairro;
-                u.cidade = Cidade;
-                u.uf = Uf;
-                u.senha = senha;
-
-
-
-
-                Contratante cRegistrado = await uService.PostRegistrarUsuarioAsync(u);
-
-                if (cRegistrado.id != 0)
-                {
-                    string mensagem = $"{cRegistrado.nome} cadastrado com sucesso.";
-                    await Application.Current.MainPage.DisplayAlert("Informação", mensagem, "Ok");
-
-                    await Application.Current.MainPage
-                        .Navigation.PopAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Informação", ex.Message + " Detalhes: " + ex.InnerException, "OK");
-            }
-        }
+       
 
 
 
