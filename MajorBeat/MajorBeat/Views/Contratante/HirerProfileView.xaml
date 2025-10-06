@@ -30,7 +30,9 @@
                        BackgroundColor="White"
                        Margin="0,25,0,0">
                     <Image Aspect="AspectFill"
-                           Source="{Binding FotoSelecionada}"/>
+                           Source="{Binding FotoSelecionada}"
+                           HeightRequest="200"
+                           WidthRequest="200"/>
                 </Frame>
                 <Border Stroke="Gray"
                     StrokeThickness="3"

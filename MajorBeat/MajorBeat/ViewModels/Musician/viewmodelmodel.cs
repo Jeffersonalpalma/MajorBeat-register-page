@@ -15,48 +15,68 @@ namespace MajorBeat.ViewModels.Musician
     {
 
         public Musico musico { get; set; }
-
-
+        public ICommand SelectionChangedCommand { get; }
+        public List<InstrumentoEnum> TodosInstrumentos { get; } =
+        Enum.GetValues(typeof(InstrumentoEnum)).Cast<InstrumentoEnum>().ToList();
         public ObservableCollection<string> Instrumentos { get; set; }
-        public ObservableCollection<string> InstrumentosFiltrados { get; set; }
+        public ObservableCollection<InstrumentoEnum> InstrumentosSelecionados { get; set; } = new();
 
-        private string _instrumentoSelecionado;
-        public string InstrumentoSelecionado
-        {
-            get => _instrumentoSelecionado;
-            set
-            {
-                _instrumentoSelecionado = value;
-                onPropertyChanged();
-            }
-        }
-
-
-
-        public void FiltrarInstrumentos(string busca)
-        {
-            var filtrado = Instrumentos
-                .Where(i => i.ToLower().Contains(busca.ToLower()))
-                .ToList();
-
-            InstrumentosFiltrados.Clear();
-            foreach (var item in filtrado)
-                InstrumentosFiltrados.Add(item);
-        }
         public ICommand AddPhotoCommand { get; }
         public ImageSource FotoSelecionada { get; set; }
 
         public Command ExibirResumoCommand { get; }
-        public viewmodelmodel(Musico m) {
+
+        public string InstrumentosSelecionadosTexto =>
+        !InstrumentosSelecionados.Any()
+            ? "Instrumentos: nenhum"
+            : $"Instrumentos: {string.Join(", ", InstrumentosSelecionados)}";
+        public viewmodelmodel(Musico m)
+        {
+            InstrumentosSelecionados.CollectionChanged += (s, e) =>
+               onPropertyChanged(nameof(InstrumentosSelecionadosTexto));
+
+            // comando que vai ser chamado pelo CollectionView
+            SelectionChangedCommand = new Command<SelectionChangedEventArgs>(OnSelectionChanged);
             musico = m;
+            if (musico.tipoMusico == TipoMusico.Solo)
+            {
+
+                IsVisible = true;
+                cIsVisible = false;
+
+            }
+            else if (musico.tipoMusico == TipoMusico.Banda)
+            {
+                IsVisible = false;
+                cIsVisible = true;
+
+
+
+            }
             ExibirResumoCommand = new Command(async () => await ExibirResumoCadastro());
-
-            Instrumentos = new ObservableCollection<string>(
-                Enum.GetNames(typeof(InstrumentoEnum))
-            );
-
-            InstrumentosFiltrados = new ObservableCollection<string>(Instrumentos);
             AddPhotoCommand = new Command(async () => await OnAddPhotoClicked());
+        }
+
+        private bool _isVisible;
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set
+            {
+                _isVisible = value;
+                onPropertyChanged(nameof(IsVisible));
+            }
+        }
+
+        private bool c_isVisible;
+        public bool cIsVisible
+        {
+            get => c_isVisible;
+            set
+            {
+                c_isVisible = value;
+                onPropertyChanged(nameof(cIsVisible));
+            }
         }
 
         private string biografia = string.Empty;
@@ -81,11 +101,23 @@ namespace MajorBeat.ViewModels.Musician
             }
         }
 
+        private byte[] _fotoBytes;
+        public byte[] FotoBytes
+        {
+            get => _fotoBytes;
+            set
+            {
+                _fotoBytes = value;
+                onPropertyChanged(nameof(FotoBytes));
+            }
+        }
 
 
 
         private async Task OnAddPhotoClicked()
         {
+            await Task.Yield(); // Libera o UI thread
+            await Task.Delay(100);
             string action = await Application.Current.MainPage.DisplayActionSheet(
                 "Adicionar Foto", "Cancelar", null, "Escolher da Galeria", "Tirar Foto");
 
@@ -104,8 +136,15 @@ namespace MajorBeat.ViewModels.Musician
 
                 if (photo != null)
                 {
-                    using var stream = await photo.OpenReadAsync();
-                    FotoSelecionada = ImageSource.FromStream(() => stream);
+                    using var originalStream = await photo.OpenReadAsync();
+
+                    // Copia para memória para reutilizar
+                    using var memoryStream = new MemoryStream();
+                    await originalStream.CopyToAsync(memoryStream);
+                    FotoBytes = memoryStream.ToArray();
+
+                    // Cria nova cópia do stream para a imagem
+                    FotoSelecionada = ImageSource.FromStream(() => new MemoryStream(FotoBytes));
                     onPropertyChanged(nameof(FotoSelecionada));
                 }
             }
@@ -116,11 +155,24 @@ namespace MajorBeat.ViewModels.Musician
             }
         }
 
+        private void OnSelectionChanged(SelectionChangedEventArgs e)
+        {
+            // Atualiza lista de seleção manualmente
+            InstrumentosSelecionados.Clear();
+            foreach (var item in e.CurrentSelection)
+            {
+                if (item is InstrumentoEnum instrumento)
+                    InstrumentosSelecionados.Add(instrumento);
+            }
+        }
+
         private async Task ExibirResumoCadastro()
         {
             var usuario = musico;
             usuario.biografia = Biografia;
             usuario.username = Username;
+            usuario.FotoBytes = FotoBytes;
+            usuario.instrumentos = InstrumentosSelecionados.ToList();
 
             string resumo =
                 $"Nome: {usuario.nome}\n" +
@@ -132,7 +184,11 @@ namespace MajorBeat.ViewModels.Musician
                 $"Cidade: {usuario.cidade} - {usuario.uf}\n" +
                 $"CEP: {usuario.cep}\n" +
                 $"Senha: {usuario.senha}\n" +
-                $"NomePerfil: {usuario.username}";
+                $"NomePerfil: {usuario.username}\n"+
+                $"TipoMusico: {usuario.tipoMusico}\n"+
+                $"Bytes:{usuario.FotoBytes}\n"+
+                $"Instrumentos: {string.Join(", ", InstrumentosSelecionados)}";
+
 
             await Application.Current.MainPage.DisplayAlert("Resumo do Cadastro", resumo, "OK");
         } 

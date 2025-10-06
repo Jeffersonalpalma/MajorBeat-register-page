@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MajorBeat.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +23,9 @@ namespace MajorBeat.Models
         public string senha { get; set; }
         public string biografia { get; set; }
         public string username { get; set; }
+        public TipoMusico tipoMusico { get; set; }
+        public List<InstrumentoEnum> instrumentos { get; set; }
+        public List<GeneroEnum> generos { get; set; }
+        public byte[] FotoBytes { get; set; }
     }
 }

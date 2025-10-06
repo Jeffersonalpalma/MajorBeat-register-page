@@ -23,5 +23,6 @@ namespace MajorBeat.Models
         public string biografia { get; set; }
         public string nomePerfil { get; set; }
         public string empresa { get; set; }
+        public byte[] FotoBytes { get; set; }
     }
 }

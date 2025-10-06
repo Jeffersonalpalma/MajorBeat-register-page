@@ -19,4 +19,6 @@ public partial class HirerProfileView : ContentPage
     {
         await Navigation.PushAsync(new UserRegisterView());
     }
+
+
 }

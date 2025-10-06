@@ -59,6 +59,7 @@ namespace MajorBeat.ViewModels
             u.cidade = Cidade;
             u.uf = Uf;
             u.senha = Senha;
+            u.tipoMusico = Tipo;
 
             var cu = new viewmodelmodel(u);
             await _navigation.PushAsync(new MusicianProfileView(cu));
