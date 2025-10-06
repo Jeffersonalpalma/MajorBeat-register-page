@@ -31,13 +31,14 @@ namespace MajorBeat.ViewModels
 
         }
 
+
         /*public async Task fds()
         {
             var cu = new viewmodelmodel(u);
             await _navigation.PushAsync(new MusicianProfileView(cu));
         }*/
 
-       
+
 
         // Label dinâmico
         public string NomeLabel => Tipo == TipoMusico.Solo ? "Nome Completo" : "Nome da Banda";
@@ -45,7 +46,32 @@ namespace MajorBeat.ViewModels
         // Lista pro Picker
         public IEnumerable<TipoMusico> Tipos => Enum.GetValues(typeof(TipoMusico)).Cast<TipoMusico>();
 
-
+            private bool ValidarCampos(Musico u,out string mensagemErro)
+        {
+            var erros = new List<string>();
+            if (string.IsNullOrWhiteSpace(u.nome))
+                erros.Add("O nome é obrigatório.");
+            if (string.IsNullOrWhiteSpace(u.email))
+                erros.Add("O e-mail é obrigatório.");
+            if (string.IsNullOrWhiteSpace(u.telefone))
+                erros.Add("O telefone é obrigatório.");
+            if (string.IsNullOrWhiteSpace(u.logradouro))
+                erros.Add("O logradouro é obrigatório.");
+            if (string.IsNullOrWhiteSpace(u.numero))
+                erros.Add("O número é obrigatório.");
+            if (string.IsNullOrWhiteSpace(u.bairro))
+                erros.Add("O bairro é obrigatório.");
+            if (string.IsNullOrWhiteSpace(u.cidade))
+                erros.Add("A cidade é obrigatória.");
+            if (string.IsNullOrWhiteSpace(u.uf))
+                erros.Add("O estado (UF) é obrigatório.");
+            if (string.IsNullOrWhiteSpace(u.cep))
+                erros.Add("O CEP é obrigatório.");
+            if (string.IsNullOrWhiteSpace(u.senha))
+                erros.Add("A senha é obrigatória.");
+            mensagemErro = string.Join("\n", erros);
+            return erros.Count == 0;
+        }
         public async Task UserSave()
         {
             Musico u = new Musico();
@@ -61,6 +87,16 @@ namespace MajorBeat.ViewModels
             u.senha = Senha;
             u.tipoMusico = Tipo;
 
+
+        string mensagemErro;
+            if (!ValidarCampos(u, out mensagemErro))
+            {
+                // Há erros, mostra alerta e NÃO avança
+                await Application.Current.MainPage.DisplayAlert("Campos obrigatórios", mensagemErro, "OK");
+                return; // impede que o PushAsync seja chamado
+            }
+
+            // Se passou na validação, avança para a próxima página
             var cu = new viewmodelmodel(u);
             await _navigation.PushAsync(new MusicianProfileView(cu));
         }

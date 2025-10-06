@@ -251,11 +251,12 @@
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
 
                         <VerticalStackLayout>
-                            <SearchBar Placeholder="Digite aqui o instrumento" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"/>
+                            <SearchBar Placeholder="Digite aqui o instrumento" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding TextoBuscaInstrumento}"/>
                             <CollectionView  HeightRequest="55"
-                                        ItemsSource="{Binding TodosInstrumentos}"
+                                        ItemsSource="{Binding InstrumentosFiltrados }"
                                         SelectionMode="Multiple"
-                                        SelectedItems="{Binding InstrumentosSelecionados}">
+                                        SelectedItems="{Binding InstrumentosSelecionados}"
+                                        SelectionChanged="OnInstrumentosSelectionChanged">
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
                                             <Label TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding .}" />
@@ -280,11 +281,12 @@
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
 
                         <VerticalStackLayout>
-                            <SearchBar Placeholder="Digite aqui o genero" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"/>
+                            <SearchBar Placeholder="Digite aqui o genero" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding TextoBusca}"/>
                             <CollectionView  HeightRequest="55"
-                                 ItemsSource="{Binding TodosGeneros}"
+                                 ItemsSource="{Binding GenerosFiltrados}"
                                  SelectionMode="Multiple"
-                                 SelectedItems="{Binding InstrumentosSelecionados}">
+                                 SelectedItems="{Binding GenerosSelecionados}"
+                                 SelectionChanged="OnGenerosSelectionChanged">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Label TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding .}" />

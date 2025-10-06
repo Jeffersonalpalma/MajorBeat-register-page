@@ -14,26 +14,39 @@ namespace MajorBeat.ViewModels.Musician
     public class viewmodelmodel: BaseViewModel
     {
 
-        public Musico musico { get; set; }
-        public ICommand SelectionChangedCommand { get; }
-        public List<InstrumentoEnum> TodosInstrumentos { get; } =
-        Enum.GetValues(typeof(InstrumentoEnum)).Cast<InstrumentoEnum>().ToList();
-
+        private Musico musico { get; set; }
         public List<GeneroEnum> TodosGeneros { get; }
-        public ObservableCollection<string> Instrumentos { get; set; }
+
+        public List<InstrumentoEnum> TodosInstrumentos { get; }
         public ObservableCollection<InstrumentoEnum> InstrumentosSelecionados { get; set; } = new();
+        public ObservableCollection<GeneroEnum> GenerosSelecionados { get; set; } = new();
 
         public ICommand AddPhotoCommand { get; }
         public ImageSource FotoSelecionada { get; set; }
 
-        public Command ExibirResumoCommand { get; }
+        public ICommand ExibirResumoCommand { get; }
 
-        public string InstrumentosSelecionadosTexto =>
-        !InstrumentosSelecionados.Any()
-            ? "Instrumentos: nenhum"
-            : $"Instrumentos: {string.Join(", ", InstrumentosSelecionados)}";
+        private ObservableCollection<InstrumentoEnum> _instrumentosFiltrados;
+        public ObservableCollection<InstrumentoEnum> InstrumentosFiltrados
+        {
+            get => _instrumentosFiltrados;
+            set
+            {
+                _instrumentosFiltrados = value;
+                onPropertyChanged(nameof(InstrumentosFiltrados));
+            }
+        }
 
-        public ObservableCollection<GeneroEnum> GenerosFiltrados { get; set; }
+        private ObservableCollection<GeneroEnum> _generosFiltrados;
+        public ObservableCollection<GeneroEnum> GenerosFiltrados
+        {
+            get => _generosFiltrados;
+            set
+            {
+                _generosFiltrados = value;
+                onPropertyChanged(nameof(GenerosFiltrados));
+            }
+        }
 
         private string _textoBusca;
         public string TextoBusca
@@ -49,18 +62,29 @@ namespace MajorBeat.ViewModels.Musician
                 }
             }
         }
+        private string _textoBuscaInstrumento;
+        public string TextoBuscaInstrumento
+        {
+            get => _textoBuscaInstrumento;
+            set
+            {
+                if (_textoBuscaInstrumento != value)
+                {
+                    _textoBuscaInstrumento = value;
+                    onPropertyChanged(nameof(TextoBuscaInstrumento));
+                    FiltrarInstrumentos();
+                }
+            }
+        }
 
-        public ObservableCollection<string> GenerosSelecionados { get; set; } = new();
         public viewmodelmodel(Musico m)
         {
             TodosGeneros = Enum.GetValues(typeof(GeneroEnum)).Cast<GeneroEnum>().ToList();
             GenerosFiltrados = new ObservableCollection<GeneroEnum>(TodosGeneros);
+            TodosInstrumentos = Enum.GetValues(typeof(InstrumentoEnum)).Cast<InstrumentoEnum>().ToList();
 
-            InstrumentosSelecionados.CollectionChanged += (s, e) =>
-               onPropertyChanged(nameof(InstrumentosSelecionadosTexto));
-
-            // comando que vai ser chamado pelo CollectionView
-            SelectionChangedCommand = new Command<SelectionChangedEventArgs>(OnSelectionChanged);
+            // Mostra todos inicialmente
+            InstrumentosFiltrados = new ObservableCollection<InstrumentoEnum>(TodosInstrumentos);
             musico = m;
             if (musico.tipoMusico == TipoMusico.Solo)
             {
@@ -223,18 +247,22 @@ namespace MajorBeat.ViewModels.Musician
             }
         }
 
-        private void OnSelectionChanged(SelectionChangedEventArgs e)
+        private void FiltrarInstrumentos()
         {
-            // Atualiza lista de seleção manualmente
-            InstrumentosSelecionados.Clear();
-            foreach (var item in e.CurrentSelection)
+            if (string.IsNullOrWhiteSpace(TextoBuscaInstrumento))
             {
-                if (item is InstrumentoEnum instrumento)
-                    InstrumentosSelecionados.Add(instrumento);
+                InstrumentosFiltrados = new ObservableCollection<InstrumentoEnum>(TodosInstrumentos);
+            }
+            else
+            {
+                var filtro = TextoBuscaInstrumento.ToLowerInvariant();
+                var filtrados = TodosInstrumentos
+                    .Where(i => i.ToString().ToLowerInvariant().Contains(filtro))
+                    .ToList();
+
+                InstrumentosFiltrados = new ObservableCollection<InstrumentoEnum>(filtrados);
             }
         }
-
-
         private void FiltrarGeneros()
         {
             var filtro = _textoBusca?.ToLower() ?? "";
@@ -247,14 +275,41 @@ namespace MajorBeat.ViewModels.Musician
             foreach (var item in listaFiltrada)
                 GenerosFiltrados.Add(item);
         }
+        private bool ValidarCampos(out string mensagemErro)
+        {
+            var erros = new List<string>();
+            if (string.IsNullOrWhiteSpace(Username))
+                erros.Add("O nome de perfil é obrigatório.");
+            if (string.IsNullOrWhiteSpace(Biografia))
+                erros.Add("A biografia é obrigatória.");
+
+            if (FotoBytes == null || FotoBytes.Length == 0)
+                erros.Add("Uma foto deve ser adicionada.");
+
+            if (InstrumentosSelecionados == null || InstrumentosSelecionados.Count == 0)
+                erros.Add("Selecione pelo menos um instrumento.");
+
+            if (GenerosSelecionados == null || GenerosSelecionados.Count == 0)
+                erros.Add("Selecione pelo menos um gênero.");
+
+            mensagemErro = string.Join("\n", erros);
+            return erros.Count == 0;
+        }
 
         private async Task ExibirResumoCadastro()
         {
+
+            if (!ValidarCampos(out string erros))
+            {
+                await Application.Current.MainPage.DisplayAlert("Campos obrigatórios", erros, "OK");
+                return; // impede de prosseguir
+            }
             var usuario = musico;
             usuario.biografia = Biografia;
             usuario.username = Username;
             usuario.FotoBytes = FotoBytes;
             usuario.instrumentos = InstrumentosSelecionados.ToList();
+            usuario.generos = GenerosSelecionados.ToList();
             usuario.linkInsta = LinkInsta;
             usuario.linkTwitter = LinkTwitter;
             usuario.linkFacebook = LinkFacebook;
@@ -282,7 +337,8 @@ namespace MajorBeat.ViewModels.Musician
                 $"NomePerfil: {usuario.username}\n"+
                 $"TipoMusico: {usuario.tipoMusico}\n"+
                 $"Bytes:{usuario.FotoBytes}\n"+
-                $"Instrumentos: {string.Join(", ", InstrumentosSelecionados)}\n" +
+                $"Instrumentos: {string.Join(", ", usuario.instrumentos)}\n" +
+                $"Gêneros: {string.Join(", ", usuario.generos)}\n" +
                 $"Links: {string.Join(", ", usuario.RedesSociais)}";
 
 
