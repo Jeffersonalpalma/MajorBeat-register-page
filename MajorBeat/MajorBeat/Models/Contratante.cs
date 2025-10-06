@@ -24,5 +24,10 @@ namespace MajorBeat.Models
         public string nomePerfil { get; set; }
         public string empresa { get; set; }
         public byte[] FotoBytes { get; set; }
+        public string linkLinkdin { get; set; }
+        public string linkInsta { get; set; }
+        public string linkTwitter { get; set; }
+        public string linkFacebook { get; set; }
+        public List<string> RedesSociais { get; set; }
     }
 }

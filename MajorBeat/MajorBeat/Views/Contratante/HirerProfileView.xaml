@@ -98,7 +98,8 @@
                                            PlaceholderColor="#604F1271" 
                                            FontAttributes="Bold" 
                                            FontFamily="InterBold" 
-                                           HeightRequest="55"/>
+                                           HeightRequest="55"
+                                           Text="{Binding LinkLinkedin}"/>
                                     
                                 </Grid>
                                 <Grid WidthRequest="120" 
@@ -114,7 +115,8 @@
                                            PlaceholderColor="#604F1271" 
                                            FontAttributes="Bold" 
                                            FontFamily="InterBold" 
-                                           HeightRequest="55"/>
+                                           HeightRequest="55"
+                                           Text="{Binding LinkInsta}"/>
                                 </Grid>
                             </Grid>
                             <Grid>
@@ -132,7 +134,8 @@
                                            PlaceholderColor="#604F1271" 
                                            FontAttributes="Bold" 
                                            FontFamily="InterBold" 
-                                           HeightRequest="55"/>
+                                           HeightRequest="55"
+                                           Text="{Binding LinkFacebook}"/>
                                     
                                 </Grid>
                                 <Grid WidthRequest="120" 
@@ -150,7 +153,8 @@
                                                PlaceholderColor="#604F1271" 
                                                FontAttributes="Bold" 
                                                FontFamily="InterBold" 
-                                               HeightRequest="55"/>     
+                                               HeightRequest="55"
+                                               Text="{Binding LinkTwitter}"/>     
                                 </Grid>
                             </Grid>
                         </VerticalStackLayout>

@@ -18,6 +18,8 @@ namespace MajorBeat.ViewModels.Musician
         public ICommand SelectionChangedCommand { get; }
         public List<InstrumentoEnum> TodosInstrumentos { get; } =
         Enum.GetValues(typeof(InstrumentoEnum)).Cast<InstrumentoEnum>().ToList();
+
+        public List<GeneroEnum> TodosGeneros { get; }
         public ObservableCollection<string> Instrumentos { get; set; }
         public ObservableCollection<InstrumentoEnum> InstrumentosSelecionados { get; set; } = new();
 
@@ -30,8 +32,30 @@ namespace MajorBeat.ViewModels.Musician
         !InstrumentosSelecionados.Any()
             ? "Instrumentos: nenhum"
             : $"Instrumentos: {string.Join(", ", InstrumentosSelecionados)}";
+
+        public ObservableCollection<GeneroEnum> GenerosFiltrados { get; set; }
+
+        private string _textoBusca;
+        public string TextoBusca
+        {
+            get => _textoBusca;
+            set
+            {
+                if (_textoBusca != value)
+                {
+                    _textoBusca = value;
+                    onPropertyChanged(nameof(TextoBusca));
+                    FiltrarGeneros();
+                }
+            }
+        }
+
+        public ObservableCollection<string> GenerosSelecionados { get; set; } = new();
         public viewmodelmodel(Musico m)
         {
+            TodosGeneros = Enum.GetValues(typeof(GeneroEnum)).Cast<GeneroEnum>().ToList();
+            GenerosFiltrados = new ObservableCollection<GeneroEnum>(TodosGeneros);
+
             InstrumentosSelecionados.CollectionChanged += (s, e) =>
                onPropertyChanged(nameof(InstrumentosSelecionadosTexto));
 
@@ -112,6 +136,50 @@ namespace MajorBeat.ViewModels.Musician
             }
         }
 
+        private string linkLinkedin;
+        public string LinkLinkedin
+        {
+            get => linkLinkedin;
+            set
+            {
+                linkLinkedin = value;
+                onPropertyChanged(nameof(LinkLinkedin));
+            }
+        }
+
+        private string linkInsta;
+        public string LinkInsta
+        {
+            get => linkInsta;
+            set
+            {
+                linkInsta = value;
+                onPropertyChanged(nameof(LinkInsta));
+            }
+        }
+
+        private string linkTwitter;
+        public string LinkTwitter
+        {
+            get => linkTwitter;
+            set
+            {
+                linkTwitter = value;
+                onPropertyChanged(nameof(LinkTwitter));
+            }
+        }
+
+        private string linkFacebook;
+        public string LinkFacebook
+        {
+            get => linkFacebook;
+            set
+            {
+                linkFacebook = value;
+                onPropertyChanged(nameof(LinkFacebook));
+            }
+        }
+
 
 
         private async Task OnAddPhotoClicked()
@@ -166,6 +234,20 @@ namespace MajorBeat.ViewModels.Musician
             }
         }
 
+
+        private void FiltrarGeneros()
+        {
+            var filtro = _textoBusca?.ToLower() ?? "";
+
+            var listaFiltrada = TodosGeneros
+                .Where(g => g.ToString().ToLower().Contains(filtro))
+                .ToList();
+
+            GenerosFiltrados.Clear();
+            foreach (var item in listaFiltrada)
+                GenerosFiltrados.Add(item);
+        }
+
         private async Task ExibirResumoCadastro()
         {
             var usuario = musico;
@@ -173,6 +255,19 @@ namespace MajorBeat.ViewModels.Musician
             usuario.username = Username;
             usuario.FotoBytes = FotoBytes;
             usuario.instrumentos = InstrumentosSelecionados.ToList();
+            usuario.linkInsta = LinkInsta;
+            usuario.linkTwitter = LinkTwitter;
+            usuario.linkFacebook = LinkFacebook;
+            usuario.linkLinkdin = LinkLinkedin;
+
+
+            usuario.RedesSociais = new List<string>
+    {
+            usuario.linkLinkdin,
+            usuario.linkInsta,
+            usuario.linkFacebook,
+            usuario.linkTwitter,
+    };
 
             string resumo =
                 $"Nome: {usuario.nome}\n" +
@@ -187,7 +282,8 @@ namespace MajorBeat.ViewModels.Musician
                 $"NomePerfil: {usuario.username}\n"+
                 $"TipoMusico: {usuario.tipoMusico}\n"+
                 $"Bytes:{usuario.FotoBytes}\n"+
-                $"Instrumentos: {string.Join(", ", InstrumentosSelecionados)}";
+                $"Instrumentos: {string.Join(", ", InstrumentosSelecionados)}\n" +
+                $"Links: {string.Join(", ", usuario.RedesSociais)}";
 
 
             await Application.Current.MainPage.DisplayAlert("Resumo do Cadastro", resumo, "OK");

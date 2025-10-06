@@ -13,7 +13,7 @@ namespace MajorBeat.ViewModels.Hirers
 {
     public class cuzasviewmodel:BaseViewModel
     {
-        public Command ExibirResumoCommand { get; }
+        public ICommand ExibirResumoCommand { get; set; }
         private readonly UsuarioService uService;
         public ICommand AddPhotoCommand { get; }
         public ImageSource FotoSelecionada { get; set; }
@@ -36,6 +36,50 @@ namespace MajorBeat.ViewModels.Hirers
             {
                 biografia = value;
                 onPropertyChanged();
+            }
+        }
+
+        private string linkLinkedin;
+        public string LinkLinkedin
+        {
+            get => linkLinkedin;
+            set
+            {
+                linkLinkedin = value;
+                onPropertyChanged(nameof(LinkLinkedin));
+            }
+        }
+
+        private string linkInsta;
+        public string LinkInsta
+        {
+            get => linkInsta;
+            set
+            {
+                linkInsta = value;
+                onPropertyChanged(nameof(LinkInsta));
+            }
+        }
+
+        private string linkTwitter;
+        public string LinkTwitter
+        {
+            get => linkTwitter;
+            set
+            {
+                linkTwitter = value;
+                onPropertyChanged(nameof(LinkTwitter));
+            }
+        }
+
+        private string linkFacebook;
+        public string LinkFacebook
+        {
+            get => linkFacebook;
+            set
+            {
+                linkFacebook = value;
+                onPropertyChanged(nameof(LinkFacebook));
             }
         }
 
@@ -112,6 +156,19 @@ namespace MajorBeat.ViewModels.Hirers
             usuario.biografia = Biografia;
             usuario.nomePerfil = NomePerfil;
             usuario.FotoBytes = FotoBytes;
+            usuario.linkInsta = LinkInsta;
+            usuario.linkTwitter = LinkTwitter;
+            usuario.linkFacebook = LinkFacebook;
+            usuario.linkLinkdin=LinkLinkedin;
+
+
+            usuario.RedesSociais = new List<string>
+    {
+            usuario.linkLinkdin,
+            usuario.linkInsta,
+            usuario.linkFacebook,
+            usuario.linkTwitter,
+    };
 
             string resumo =
                 $"Nome: {usuario.nome}\n" +
@@ -124,7 +181,8 @@ namespace MajorBeat.ViewModels.Hirers
                 $"CEP: {usuario.cep}\n" +
                 $"Senha: {usuario.senha}\n" +
                 $"NomePerfil: {usuario.nomePerfil}\n"+
-                $"Bytes:{usuario.FotoBytes}";
+                $"Bytes:{usuario.FotoBytes}\n"+
+                $"Links: {string.Join(", ", usuario.RedesSociais)}";
 
             await Application.Current.MainPage.DisplayAlert("Resumo do Cadastro", resumo, "OK");
         } /*

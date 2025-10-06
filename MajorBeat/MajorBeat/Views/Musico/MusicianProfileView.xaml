@@ -110,7 +110,6 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label Text="{Binding InstrumentosSelecionadosTexto}" TextColor="White"/>
                         <Label Grid.Row="0" Text="Apelido" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
                         <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
                             <Entry Grid.Row="1" Placeholder="Ex: Marquinhos" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Username}"></Entry>
@@ -175,7 +174,8 @@
                                            TextColor="#4F1271"
                                            FontAttributes="Bold" 
                                            FontFamily="InterBold" 
-                                           HeightRequest="55"/>
+                                           HeightRequest="55"
+                                           Text="{Binding LinkLinkedin}"/>
 
                                 </Grid>
                                 <Grid WidthRequest="120" 
@@ -191,7 +191,8 @@
                                          TextColor="#4F1271"
                                          FontAttributes="Bold" 
                                          FontFamily="InterBold" 
-                                         HeightRequest="55"/>
+                                         HeightRequest="55"
+                                         Text="{Binding LinkInsta}"/>
                                 </Grid>
                             </Grid>
                             <Grid>
@@ -210,7 +211,8 @@
                                         TextColor="#4F1271"
                                         FontAttributes="Bold" 
                                         FontFamily="InterBold" 
-                                        HeightRequest="55"/>
+                                        HeightRequest="55"
+                                        Text="{Binding LinkFacebook}"/>
 
                                 </Grid>
                                 <Grid WidthRequest="120" 
@@ -228,7 +230,8 @@
                                         TextColor="#4F1271"
                                         FontAttributes="Bold" 
                                         FontFamily="InterBold" 
-                                        HeightRequest="55"/>
+                                        HeightRequest="55"
+                                        Text="{Binding LinkTwitter}"/>
                                 </Grid>
                             </Grid>
                         </VerticalStackLayout>
@@ -252,8 +255,7 @@
                             <CollectionView  HeightRequest="55"
                                         ItemsSource="{Binding TodosInstrumentos}"
                                         SelectionMode="Multiple"
-                                        SelectedItems="{Binding InstrumentosSelecionados}"
-                                             SelectionChanged="{Binding OnSelectionChanged}">
+                                        SelectedItems="{Binding InstrumentosSelecionados}">
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
                                             <Label TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding .}" />
@@ -278,15 +280,17 @@
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
 
                         <VerticalStackLayout>
-                            <Entry Placeholder="Digite aqui o estilo musical" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"/>
-
-                            <Picker Title="Selecione" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55">
-                                <Picker.Items>
-                                    <x:String>Rock</x:String>
-                                    <x:String>Hip Hop</x:String>
-                                </Picker.Items>
-                            </Picker>
-
+                            <SearchBar Placeholder="Digite aqui o genero" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55"/>
+                            <CollectionView  HeightRequest="55"
+                                 ItemsSource="{Binding TodosGeneros}"
+                                 SelectionMode="Multiple"
+                                 SelectedItems="{Binding InstrumentosSelecionados}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding .}" />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
                         </VerticalStackLayout>
                     </Border>
                 </Grid>

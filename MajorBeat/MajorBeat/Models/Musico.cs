@@ -27,5 +27,10 @@ namespace MajorBeat.Models
         public List<InstrumentoEnum> instrumentos { get; set; }
         public List<GeneroEnum> generos { get; set; }
         public byte[] FotoBytes { get; set; }
+        public string linkLinkdin { get; set; }
+        public string linkInsta { get; set; }
+        public string linkTwitter { get; set; }
+        public string linkFacebook { get; set; }
+        public List<string> RedesSociais { get; set; }
     }
 }
