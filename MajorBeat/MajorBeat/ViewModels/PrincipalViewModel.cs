@@ -35,6 +35,23 @@ namespace MajorBeat.ViewModels
 
         public bool IsContratanteSelected => !isMusicoSelected;
 
+        private bool isEmpresaSelected;
+        public bool IsEmpresaSelected
+        {
+            get => isEmpresaSelected;
+            set
+            {
+                if (isEmpresaSelected != value)
+                {
+                    isEmpresaSelected = value;
+                    onPropertyChanged(nameof(IsEmpresaSelected));       // avisa que mudou
+                    onPropertyChanged(nameof(IsContraSelected));
+                }
+            }
+        }
+
+        public bool IsContraSelected => !isEmpresaSelected;
+
         public ICommand ConfirmarCommand { get; }
 
         public PrincipalViewModel(INavigation navigation)

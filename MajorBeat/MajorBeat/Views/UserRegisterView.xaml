@@ -98,20 +98,20 @@
             </Border>
 
             <!--nome empresa-->
-            <VerticalStackLayout x:Name="ContratanteFields" IsVisible="False" Margin="0,10,0,0">
+            <VerticalStackLayout Margin="0,10,0,0">
                     <Label Margin="30,20,0,0" FontSize="15" Text="Você está criando este perfil em nome de uma empresa (ex.: restaurante, bar, casa de shows)?" FontAttributes="Bold" FontFamily="InterBold"  TextColor="white"></Label>
                 <Border Style="{StaticResource EntryBorder}">
                     <Grid Margin="0,0,0,0">
-                        <RadioButton x:Name="nao" Content="Não" GroupName="Type" TextColor="#4F1271" IsChecked="True"
+                                <RadioButton Content="Não" GroupName="Type" TextColor="#4F1271" IsChecked="{Binding IsContraSelected}"
                         HorizontalOptions="Center" FontSize="15" Margin="120,0,0,0" BorderColor="#e7e7e7"/>
-                        <RadioButton x:Name="sim" Content="Sim" GroupName="Type" TextColor="#4F1271" IsChecked="False"
+                                <RadioButton Content="Sim" GroupName="Type" TextColor="#4F1271" IsChecked="{Binding IsEmpresaSelected}"
                         HorizontalOptions="Center" FontSize="15" Margin="0,0,190,0" BorderColor="#e7e7e7"/>
                     </Grid>
                 </Border>
             </VerticalStackLayout>
 
 
-            <VerticalStackLayout x:Name="EmpresaFields" IsVisible="False" Margin="0,10,0,0">
+                    <VerticalStackLayout x:Name="EmpresaFields" IsVisible="{Binding IsEmpresaSelected}" Margin="0,10,0,0">
                 <Grid Margin="0,20,0,0">
                     <Label Text="Nome da Empresa:" HorizontalOptions="Start" Margin="38,0,0,0" FontSize="16"  FontAttributes="Bold" FontFamily="InterBold" TextColor="#e7e7e7"></Label>
                     <Border Style="{StaticResource EntryBorder}">
