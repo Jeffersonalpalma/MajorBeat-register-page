@@ -132,10 +132,10 @@ namespace MajorBeat.ViewModels
             u.tipoMusico = Tipo;
             if (ValidarCampos(u))
             {
-                
-            }
-               var cu = new viewmodelmodel(u);
+                var cu = new viewmodelmodel(u);
                 await _navigation.PushAsync(new MusicianProfileView(cu));
+            }
+               
                 
 
 

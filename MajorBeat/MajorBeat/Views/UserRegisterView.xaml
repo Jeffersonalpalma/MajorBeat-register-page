@@ -65,45 +65,10 @@
 
                     <Border WidthRequest="370" BackgroundColor="#e7e7e7" StrokeShape="RoundRectangle 10">
                         <Grid Margin="40,0,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <!-- Picker -->
-                                <ColumnDefinition Width="Auto" />
-                                <!-- Separador "|" -->
-                                <ColumnDefinition Width="*" />
-                                <!-- Entry -->
-                            </Grid.ColumnDefinitions>
-
-                            <!-- Picker -->
-                            <Picker
-            Grid.Column="0"
-            WidthRequest="60"
-            Margin="0,5,0,0"
-            ZIndex="1"
-                                TextColor="#4F1271">
-                                <Picker.ItemsSource>
-                                    <x:Array Type="{x:Type x:String}">
-                                        <x:String>+55</x:String>
-                                        <x:String>+351</x:String>
-                                        <x:String>+81</x:String>
-                                    </x:Array>
-                                </Picker.ItemsSource>
-                            </Picker>
-
-                            <!-- Separador -->
-                            <Label 
-            Grid.Column="1"
-            Text="|"
-            FontSize="30"
-            VerticalOptions="Center"
-            TextColor="#7F5297"
-            Margin="0,0,5,0"/>
-
-                            <!-- Entry -->
                             <Entry 
-            Grid.Column="2"
             Placeholder="Ex:(11) 95802-7781"
             HeightRequest="55"
+            WidthRequest="370"
             FontAttributes="Bold"
             FontFamily="InterBold"
             PlaceholderColor="#604F1271"
@@ -263,13 +228,14 @@
                 <VerticalStackLayout WidthRequest="370" Margin="0,0,0,0">
 
                 <!-- botão solo banda-->
-                <VerticalStackLayout  x:Name="MusicoFields" IsVisible="True" HorizontalOptions="End">
-                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="80">
+                <VerticalStackLayout HorizontalOptions="Start">
+                        <Label Text="Selecione o tipo de musico" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,20,0,0" HorizontalTextAlignment="Start"></Label>
+                        <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,0,0,0" WidthRequest="370">
                         <Picker
-                                Title="Selecione"
+                                Title="Selecione o tipo de musico"
                                 x:Name="Choice"
                                 Grid.Row="0"
-                                WidthRequest="60"
+                                WidthRequest="370"
                                 HorizontalOptions="End"
                                 Margin="0,5,0,0"
                                 ZIndex="1"
@@ -322,46 +288,14 @@
 
                     <Border WidthRequest="370" BackgroundColor="#e7e7e7" StrokeShape="RoundRectangle 10">
                         <Grid Margin="40,0,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <!-- Picker -->
-                                <ColumnDefinition Width="Auto" />
-                                <!-- Separador "|" -->
-                                <ColumnDefinition Width="*" />
-                                <!-- Entry -->
-                            </Grid.ColumnDefinitions>
 
-                            <!-- Picker -->
-                            <Picker
-            Grid.Column="0"
-            WidthRequest="60"
-            Margin="0,5,0,0"
-            ZIndex="1"
-                                TextColor="#4F1271">
-                                <Picker.ItemsSource>
-                                    <x:Array Type="{x:Type x:String}">
-                                        <x:String>+55</x:String>
-                                        <x:String>+351</x:String>
-                                        <x:String>+81</x:String>
-                                    </x:Array>
-                                </Picker.ItemsSource>
-                            </Picker>
 
-                            <!-- Separador -->
-                            <Label 
-            Grid.Column="1"
-            Text="|"
-            FontSize="30"
-            VerticalOptions="Center"
-            TextColor="#7F5297"
-            Margin="0,0,5,0"/>
-
-                            <!-- Entry -->
+                           
                             <Entry 
                                 TextColor="#4F1271"
-            Grid.Column="2"
             Placeholder="Ex:(11) 95802-7781"
             HeightRequest="55"
+            WidthRequest="370"                    
             FontAttributes="Bold"
             FontFamily="InterBold"
             PlaceholderColor="#604F1271"
