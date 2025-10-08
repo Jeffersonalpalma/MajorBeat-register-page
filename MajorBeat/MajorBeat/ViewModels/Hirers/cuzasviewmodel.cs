@@ -105,6 +105,20 @@ namespace MajorBeat.ViewModels.Hirers
             }
         }
 
+        private bool erroBioVisible;
+        public bool ErroBioVisible
+        {
+            get => erroBioVisible;
+            set { erroBioVisible = value; onPropertyChanged(); }
+        }
+
+        private bool erroUserVisible;
+        public bool ErroUserVisible
+        {
+            get => erroUserVisible;
+            set { erroUserVisible = value; onPropertyChanged(); }
+        }
+
 
 
 
@@ -150,8 +164,39 @@ namespace MajorBeat.ViewModels.Hirers
                     "Erro", $"Não foi possível obter a imagem: {ex.Message}", "OK");
             }
         }
+
+        private bool ValidarCampos()
+        {
+            var valido = true;
+            if (string.IsNullOrWhiteSpace(NomePerfil))
+            {
+                ErroUserVisible = true;
+                valido = false;
+            }
+            else
+            {
+                ErroUserVisible = false;
+            }
+            if (string.IsNullOrWhiteSpace(Biografia))
+            {
+                ErroBioVisible = true;
+                valido = false;
+            }
+            else
+            {
+                ErroBioVisible = false;
+            }
+
+
+            return valido;
+        }
         private async Task ExibirResumoCadastro()
         {
+
+            if (!ValidarCampos())
+            {
+                return; // impede de prosseguir
+            }
             var usuario = Usuario;
             usuario.biografia = Biografia;
             usuario.nomePerfil = NomePerfil;

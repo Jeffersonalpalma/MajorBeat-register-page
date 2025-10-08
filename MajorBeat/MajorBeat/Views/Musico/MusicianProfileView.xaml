@@ -111,6 +111,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Label Grid.Row="0" Text="Apelido" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                        <Label Grid.Row="0" Text="O apelido não pode ser nulo" IsVisible="{Binding ErroUserVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
                         <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
                             <Entry Grid.Row="1" Placeholder="Ex: Marquinhos" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Username}"></Entry>
                         </Border>
@@ -248,6 +249,7 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Text="Instrumentos" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Row="0" Text="Adicione pelo menos um instrumento" IsVisible="{Binding ErroInstrumentoVisible}" TextColor="Red" Margin="0,15,0,0" FontSize="10" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
 
                         <VerticalStackLayout>
@@ -278,6 +280,7 @@
                     </Grid.RowDefinitions>
 
                     <Label Grid.Row="0" Text="Estilos musicais" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Row="0" Text="Adicione pelo menos um estilo" IsVisible="{Binding ErroGeneroVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="120">
 
                         <VerticalStackLayout>
@@ -304,6 +307,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Text="Biografia" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Label Grid.Row="0" Text="Preencha a biografia" IsVisible="{Binding ErroBioVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
                         <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" TextColor="#4F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Biografia}"></Editor>
                     </Border>

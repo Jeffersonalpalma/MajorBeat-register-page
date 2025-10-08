@@ -62,8 +62,9 @@
                 </Grid.RowDefinitions>
 
                 <Label Grid.Row="0" Text="Nome do Perfil" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
-                <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
-                    <Entry Grid.Row="1" Placeholder="Ex: Wagner Moura" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding NomePerfil}"></Entry>
+                    <Label Grid.Row="0" Text="O nome do perfil não pode ser nulo" IsVisible="{Binding ErroUserVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
+                    <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370">
+                        <Entry TextColor="#4F1271" Grid.Row="1" Placeholder="Ex: Wagner Moura" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding NomePerfil}"></Entry>
                 </Border>
             </Grid>
 
@@ -99,6 +100,7 @@
                                            FontAttributes="Bold" 
                                            FontFamily="InterBold" 
                                            HeightRequest="55"
+                                           TextColor="#4F1271"
                                            Text="{Binding LinkLinkedin}"/>
                                     
                                 </Grid>
@@ -116,6 +118,7 @@
                                            FontAttributes="Bold" 
                                            FontFamily="InterBold" 
                                            HeightRequest="55"
+                                           TextColor="#4F1271"
                                            Text="{Binding LinkInsta}"/>
                                 </Grid>
                             </Grid>
@@ -135,6 +138,7 @@
                                            FontAttributes="Bold" 
                                            FontFamily="InterBold" 
                                            HeightRequest="55"
+                                           TextColor="#4F1271"
                                            Text="{Binding LinkFacebook}"/>
                                     
                                 </Grid>
@@ -154,6 +158,7 @@
                                                FontAttributes="Bold" 
                                                FontFamily="InterBold" 
                                                HeightRequest="55"
+                                               TextColor="#4F1271"
                                                Text="{Binding LinkTwitter}"/>     
                                 </Grid>
                             </Grid>
@@ -169,8 +174,9 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Text="Biografia" TextColor="#e7e7e7" FontSize="16" FontAttributes="Bold" FontFamily="InterBold" Margin="40,0,0,0" HorizontalTextAlignment="Start"></Label>
+                    <Label Grid.Row="0" Text="Preencha a biografia" IsVisible="{Binding ErroBioVisible}" TextColor="Red" FontSize="10" Margin="0,15,0,0" FontAttributes="Bold" FontFamily="InterBold"  HorizontalTextAlignment="End"></Label>
                     <Border StrokeShape="RoundRectangle 10" BackgroundColor="#e7e7e7" Margin="0,30,0,0" WidthRequest="370" HeightRequest="150">
-                        <Editor AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Biografia}"></Editor>
+                        <Editor TextColor="#4F1271" AutoSize="TextChanges" Grid.Row="1" Placeholder="Descreva-se:" PlaceholderColor="#604F1271" FontAttributes="Bold" FontFamily="InterBold" Text="{Binding Biografia}"></Editor>
                     </Border>
                 </Grid>
             </VerticalStackLayout>

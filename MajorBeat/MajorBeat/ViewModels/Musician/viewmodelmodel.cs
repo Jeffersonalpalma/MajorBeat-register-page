@@ -105,6 +105,36 @@ namespace MajorBeat.ViewModels.Musician
             AddPhotoCommand = new Command(async () => await OnAddPhotoClicked());
         }
 
+        private bool erroInstrumentoVisible;
+        public bool ErroInstrumentoVisible
+        {
+            get => erroInstrumentoVisible;
+            set { erroInstrumentoVisible = value; onPropertyChanged(); }
+        }
+
+        private bool erroGeneroVisible;
+        public bool ErroGeneroVisible
+        {
+            get => erroGeneroVisible;
+            set { erroGeneroVisible = value; onPropertyChanged(); }
+        }
+
+        private bool erroBioVisible;
+        public bool ErroBioVisible
+        {
+            get => erroBioVisible;
+            set { erroBioVisible = value; onPropertyChanged(); }
+        }
+
+        private bool erroUserVisible;
+        public bool ErroUserVisible
+        {
+            get => erroUserVisible;
+            set { erroUserVisible = value; onPropertyChanged(); }
+        }
+
+
+
         private bool _isVisible;
         public bool IsVisible
         {
@@ -275,33 +305,53 @@ namespace MajorBeat.ViewModels.Musician
             foreach (var item in listaFiltrada)
                 GenerosFiltrados.Add(item);
         }
-        private bool ValidarCampos(out string mensagemErro)
+        private bool ValidarCampos()
         {
-            var erros = new List<string>();
-            if (string.IsNullOrWhiteSpace(Username))
-                erros.Add("O nome de perfil é obrigatório.");
-            if (string.IsNullOrWhiteSpace(Biografia))
-                erros.Add("A biografia é obrigatória.");
+            var valido = true;
+            if (string.IsNullOrWhiteSpace(Username) && musico.tipoMusico==TipoMusico.Solo) { 
+                ErroUserVisible = true;
+                valido = false;
+            }
+            else
+            {
+                ErroUserVisible = false;    
+            }
+            if (string.IsNullOrWhiteSpace(Biografia)) { 
+                ErroBioVisible = true;
+                valido = false;
+            }
+            else
+            {
+                ErroBioVisible = false;
+            }
 
-            if (FotoBytes == null || FotoBytes.Length == 0)
-                erros.Add("Uma foto deve ser adicionada.");
+            if (InstrumentosSelecionados == null || InstrumentosSelecionados.Count == 0) { 
+                ErroInstrumentoVisible = true;
+                valido = false;
+            }
+            else
+            {
+                ErroInstrumentoVisible = false;
+            }
 
-            if (InstrumentosSelecionados == null || InstrumentosSelecionados.Count == 0)
-                erros.Add("Selecione pelo menos um instrumento.");
+            if (GenerosSelecionados == null || GenerosSelecionados.Count == 0) { 
+                ErroGeneroVisible = true;
+                valido = false;
+            }
+            else
+            {
+                ErroGeneroVisible = false;
+            }
 
-            if (GenerosSelecionados == null || GenerosSelecionados.Count == 0)
-                erros.Add("Selecione pelo menos um gênero.");
 
-            mensagemErro = string.Join("\n", erros);
-            return erros.Count == 0;
+            return valido;
         }
 
         private async Task ExibirResumoCadastro()
         {
 
-            if (!ValidarCampos(out string erros))
+            if (!ValidarCampos())
             {
-                await Application.Current.MainPage.DisplayAlert("Campos obrigatórios", erros, "OK");
                 return; // impede de prosseguir
             }
             var usuario = musico;
