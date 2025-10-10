@@ -11,38 +11,33 @@ namespace MajorBeat.Services
 {
     public  class Request
     {
-        public async Task<int> PostReturnIntAsync<TResult>(string uri, TResult data, string token)
+        public async Task<TResult> PostAsync<TResult>(string uri, TResult data)
         {
-            HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Authorization
-            = new AuthenticationHeaderValue("Bearer", token);
-
-            string json = JsonConvert.SerializeObject(data);
-
-            
-            System.Diagnostics.Debug.WriteLine("JSON ENVIADO:\n" + json);
-
-            var content = new StringContent(JsonConvert.SerializeObject(data)); content.Headers.ContentType = new MediaTypeHeaderValue("application/json"); HttpResponseMessage response = await httpClient.PostAsync(uri, content); string serialized = await response.Content.ReadAsStringAsync();
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            try
             {
-                var contratante = JsonConvert.DeserializeObject<Contratante>(serialized);
-                return contratante.id;
-            }
-            else
-                throw new Exception(serialized);
-        }
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
 
-        public async Task<TResult> PostAsync<TResult>(string uri, TResult data, string token)
-        {
-            HttpClient httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Authorization
-            = new AuthenticationHeaderValue("Bearer", token);
-            var content = new StringContent(JsonConvert.SerializeObject(data)); content.Headers.ContentType = new MediaTypeHeaderValue("application/json"); HttpResponseMessage response = await httpClient.PostAsync(uri, content); string serialized = await response.Content.ReadAsStringAsync(); TResult result = data;
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                result = await Task.Run(() => JsonConvert.DeserializeObject<TResult>(serialized));
-            else
-                throw new Exception(serialized);
-            return result;
+                    HttpResponseMessage response = await httpClient.PostAsync(uri, content);
+                    string serialized = await response.Content.ReadAsStringAsync();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Retorna o objeto completo que a API devolveu
+                        TResult result = JsonConvert.DeserializeObject<TResult>(serialized);
+                        return result;
+                    }
+                    else
+                    {
+                        throw new Exception($"Erro ao enviar requisição POST. Status: {response.StatusCode}\nDetalhes: {serialized}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro na requisição POST: {ex.Message}");
+            }
         }
     }
 }

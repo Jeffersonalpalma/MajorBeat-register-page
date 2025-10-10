@@ -1,5 +1,6 @@
 ﻿using MajorBeat.Models;
 using MajorBeat.Models.Enums;
+using MajorBeat.Services.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -354,6 +355,7 @@ namespace MajorBeat.ViewModels.Musician
             {
                 return; // impede de prosseguir
             }
+            try { 
             var usuario = musico;
             usuario.biografia = Biografia;
             usuario.username = Username;
@@ -372,7 +374,7 @@ namespace MajorBeat.ViewModels.Musician
             usuario.linkInsta,
             usuario.linkFacebook,
             usuario.linkTwitter,
-    };
+    };/*
 
             string resumo =
                 $"Nome: {usuario.nome}\n" +
@@ -392,7 +394,29 @@ namespace MajorBeat.ViewModels.Musician
                 $"Links: {string.Join(", ", usuario.RedesSociais)}";
 
 
-            await Application.Current.MainPage.DisplayAlert("Resumo do Cadastro", resumo, "OK");
-        } 
+            await Application.Current.MainPage.DisplayAlert("Resumo do Cadastro", resumo, "OK");*/
+
+            var service = new UsuarioService();
+            var musicoCadastrado = await service.PostMusicoAsync(usuario);
+
+            // Exibe mensagem de sucesso com o ID retornado
+            await Application.Current.MainPage.DisplayAlert(
+                "Sucesso",
+                $"Músico {musicoCadastrado.nome} cadastrado com sucesso!\nID: {musicoCadastrado.id}",
+                "OK"
+            );
+
+            // Retorna à página anterior (ou navega conforme sua lógica)
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
+    catch (Exception ex)
+    {
+        await Application.Current.MainPage.DisplayAlert(
+            "Erro ao cadastrar",
+            $"Não foi possível concluir o cadastro.\nDetalhes: {ex.Message}",
+            "OK"
+        );
+    }
+} 
     }
 }

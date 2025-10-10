@@ -11,21 +11,20 @@ namespace MajorBeat.Services.Usuarios
     {
         private readonly Request _request;
 
-        private const string apiUrlBase = "https://majorbbeat-gmc9fef0gaaxesbt.brazilsouth-01.azurewebsites.net/Usuarios";
+        private const string apiUrlBase = "http://localhost:8080/Musico/cadastrar";
 
         public UsuarioService()
         {
             _request = new Request();
         }
 
-        public async Task<Contratante> PostRegistrarUsuarioAsync(Contratante u)
+        public async Task<Musico> PostMusicoAsync(Musico musico)
         {
-            string urlComplementar = "/PostUsuarios";
-            u.id = await _request.PostReturnIntAsync(apiUrlBase + urlComplementar, u, string.Empty);
-
-            return u;
+            string url = apiUrlBase; // Se a rota for algo como /api/musico ou /api/musico/cadastrar, altere aqui
+            Musico musicoCadastrado = await _request.PostAsync(url, musico);
+            return musicoCadastrado;
         }
 
-       
+
     }
 }
